@@ -56,7 +56,7 @@ create new invoice, DONE
 create new product, DONE
 add product to invoice (calls create new invoice if doesn't exist)
 get invoices by customer, DONE
-get unpaid invoices for this month
+get unpaid invoices for this month DONE
 )
      - At least three (3) of the store procedures must have error handling in its processing
      - At least two (2) of the store procedures must have transaction management in its processing

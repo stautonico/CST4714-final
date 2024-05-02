@@ -2,6 +2,8 @@ CREATE OR ALTER PROCEDURE S23916715.InitializeInvoice_ProfG_FP(
     @customer_email VARCHAR(320),
     @invoice_num INT = NULL,
     @description VARCHAR(1024) = NULL,
+    @due_date DATE = NULL,
+    @due_days INT = NULL, -- The amount of days (from today) which the invoice is due
     @inserted_id INT OUT
 )
 AS
@@ -53,11 +55,35 @@ BEGIN
             WHERE [key] = 'invoice_accumulator';
         END
 
-    -- Step 3: Insert the new invoice
+    -- Step 3: We can't have both the due_date and the due_days
+    IF @due_date IS NOT NULL AND @due_days IS NOT NULL
+        BEGIN
+            PRINT 'You can''t provide both due_date and due_days'
+            RETURN
+        END
+
+    -- Step 4: Insert the new invoice
     BEGIN TRY
-        INSERT INTO S23916715.Invoice_ProfG_FP
-            (num, customer, description)
-        VALUES (@invoice_num, @customerID, @description);
+        IF @due_days IS NOT NULL OR @due_date IS NOT NULL
+            BEGIN
+                DECLARE @due DATE;
+                IF @due_date IS NOT NULL
+                    -- If we have the due_date, just insert that,
+                    SET @due = @due_date
+                ELSE
+                    -- but if we have the due_days, set `due` = today's date + the due_days
+                    SET @due = DATEADD(DAY, @due_days, GETDATE())
+
+                INSERT INTO S23916715.Invoice_ProfG_FP (num, customer, description, due)
+                VALUES (@invoice_num, @customerID, @description, @due)
+            END
+        ELSE
+            -- We we didn't provide either due_days or due_date, don't insert it (it'll default to today + 30 days)
+            BEGIN
+                INSERT INTO S23916715.Invoice_ProfG_FP
+                    (num, customer, description)
+                VALUES (@invoice_num, @customerID, @description);
+            END
 
         -- Set our output variable to the ID of the last inserted ID (scoped)
         SET @inserted_id = SCOPE_IDENTITY();
