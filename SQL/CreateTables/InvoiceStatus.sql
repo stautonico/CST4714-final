@@ -1,0 +1,5 @@
+CREATE TABLE S23916715.InvoiceStatus_ProfG_FP
+(
+    id     INT PRIMARY KEY IDENTITY (1,1),
+    status VARCHAR(10) NOT NULL,
+)

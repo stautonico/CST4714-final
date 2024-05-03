@@ -53,7 +53,10 @@ BEGIN
 
             IF @remaining <= 0
                 BEGIN
-                    UPDATE S23916715.Invoice_ProfG_FP SET status = 'PAID', paid=SYSDATETIME() WHERE num = @invoice_num;
+                    UPDATE S23916715.Invoice_ProfG_FP
+                    SET status = S23916715.GetInvoiceStatusId_ProfF_FP('PAID'),
+                        paid=SYSDATETIME()
+                    WHERE num = @invoice_num;
                 END
 
             COMMIT TRANSACTION [Trans]

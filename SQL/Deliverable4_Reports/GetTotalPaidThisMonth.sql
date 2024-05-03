@@ -1,0 +1,7 @@
+CREATE OR ALTER VIEW S23916715.GetTotalPaidThisMonth_ProfG_FP AS
+SELECT CONVERT(FLOAT, SUM(CONVERT(BIGINT, Total))) / 100 AS GrandTotal
+FROM (SELECT SUM(CONVERT(BIGINT, amount)) AS Total
+      FROM S23916715.InvoicePaymentRecord_ProfG_FP
+      WHERE YEAR(date) = YEAR(GETDATE())
+        AND MONTH(date) = MONTH(GETDATE())
+) AS Records;

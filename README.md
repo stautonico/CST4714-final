@@ -22,8 +22,10 @@
   7. GetStaleInvoices (haven't been touched in at least 30 days) [GetStaleInvoices.sql](SQL%2FDeliverable4_Reports%2FGetStaleInvoices.sql)
   8. GetInvoicesByNum (toggleable json)
   9. GetPricesForProduct
-  10. GetTotalBilledThisMonth
-  11. TODO: Get total amount paid this month (use payment records for it)
+  10. GetTotalBilledThisMonth 
+  11. GetTotalPaidThisMonth
+  12. CalculateRemainingBalance
+  13. GetInvoicePayments
 
 ## Deliverable 7
 - Partial credit for describing without implementing it
@@ -64,7 +66,8 @@
 - Implement constraints to validate that a given enum value (like invoice status) is only one of the allowed values
 - Make table for invoice status instead of hardcoding varchar
 - Add more invoice statuses (overpaid, etc)
-- DO NOT SELECT c.* IN CUSTOMERS THAT HAVE UNPAID INVOICES
+- In proposal, note how all prices are stored in ints then converted to float
+- Draw ERD (after everything is done)
 
 
 

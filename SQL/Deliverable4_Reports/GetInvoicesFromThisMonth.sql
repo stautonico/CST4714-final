@@ -25,7 +25,7 @@ BEGIN
       AND MONTH(created) = MONTH(GETDATE())
       -- I'm pretty sure this server is configured to be case-insensitive,
       -- so we don't need to worry about changing the case (the db should store all upper case)
-      AND (@status IS NULL OR status = @status);
+      AND (@status IS NULL OR status = S23916715.GetInvoiceStatusId_ProfF_FP(@status));
 
     SET NOCOUNT OFF
 END

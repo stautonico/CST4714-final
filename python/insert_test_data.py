@@ -11,7 +11,7 @@ rand = random.Random()
 dt = Datetime(Locale.EN)
 
 
-# TODO: Use the stored procedures to create these
+STATUSES = ["DRAFT", "PAID", "SENT", "OVERDUE", "CANCELED"]
 
 def insert_fake_customers(cursor, count=50):
     for x in range(count):
@@ -85,6 +85,10 @@ def insert_fake_payment_method(cursor):
         cursor.execute(f"""INSERT INTO S23916715.PaymentMethod_ProfG_FP (method) VALUES ('{method}')""")
 
 
+def insert_fake_statuses(cursor):
+    for status in STATUSES:
+        cursor.execute(f"""INSERT INTO S23916715.InvoiceStatus_ProfG_FP (status) VALUES ('{status}')""")
+
 def insert_fake_invoice(cursor, customer_count=50, count=200):
     for x in range(count):
         print(f"\b" * 1000, end="")
@@ -96,7 +100,8 @@ def insert_fake_invoice(cursor, customer_count=50, count=200):
         ("""
 
         # Pick the status now so we can determine if we're inserting the paid timestamp
-        status = choice(["DRAFT", "PAID", "SENT", "OVERDUE", "CANCELED"])
+        status = choice(STATUSES)
+        status_id = STATUSES.index(status)+1
 
         if status == "PAID":
             template += "paid,"
@@ -108,7 +113,7 @@ def insert_fake_invoice(cursor, customer_count=50, count=200):
         else:
             template += "("
 
-        template += f"'{status}', {randint(1, customer_count)}, '{desc}', {x})"
+        template += f"{status_id}, {randint(1, customer_count)}, '{desc}', {x})"
 
         cursor.execute(template)
 
@@ -199,6 +204,10 @@ def main():
     insert_fake_price(cursor)
     print("Making fake payment methods")
     insert_fake_payment_method(cursor)
+
+    print("Making fake invoice statuses")
+    insert_fake_statuses(cursor)
+
     print("Making fake invoices")
     insert_fake_invoice(cursor)
     print("Making fake invoice lines")

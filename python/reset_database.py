@@ -4,7 +4,7 @@ import re
 import sys
 
 TABLE_DROP_ORDER = ["Variables", "RevisionLine", "Revision", "InvoicePaymentRecord", "InvoiceLine", "Invoice",
-                    "PaymentMethod", "Price", "Discount", "DiscountType", "Product", "Customer"]
+                    "InvoiceStatus", "PaymentMethod", "Price", "Discount", "DiscountType", "Product", "Customer"]
 
 
 def drop_tables(c):
@@ -78,7 +78,6 @@ def make_procedures(cursor):
         with open(os.path.join("..", "SQL", "Procedures", file), "r") as f:
             code = f.read()
 
-            print(file)
             cursor.execute(code)
 
 
@@ -131,6 +130,15 @@ def main():
 
     connection, cursor = database.init_connection()
 
+    print("Dropping functions...")
+    drop_functions(cursor)
+    connection.commit()
+
+    if not nocreate:
+        print("Re-creating functions...")
+        make_functions(cursor)
+        connection.commit()
+
     print("Dropping tables...")
     drop_tables(cursor)
     connection.commit()
@@ -167,14 +175,6 @@ def main():
         make_procedures(cursor)
         connection.commit()
 
-    print("Dropping functions...")
-    drop_functions(cursor)
-    connection.commit()
-
-    if not nocreate:
-        print("Re-creating functions...")
-        make_functions(cursor)
-        connection.commit()
 
     print("All done!")
     connection.commit()

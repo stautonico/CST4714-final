@@ -35,7 +35,7 @@ BEGIN
              INNER JOIN
          S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
              INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
-    WHERE i.status NOT IN ('PAID', 'DRAFT', 'CANCELED');
+    WHERE i.status NOT IN (S23916715.GetInvoiceStatusId('PAID'), S23916715.GetInvoiceStatusId('DRAFT'), S23916715.GetInvoiceStatusId('CANCELED'));
 
     IF @asJson = 1
         BEGIN
