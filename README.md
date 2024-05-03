@@ -23,6 +23,7 @@
   8. GetInvoicesByNum (toggleable json)
   9. GetPricesForProduct
   10. GetTotalBilledThisMonth
+  11. TODO: Get total amount paid this month (use payment records for it)
 
 ## Deliverable 7
 - Partial credit for describing without implementing it
