@@ -12,6 +12,17 @@
  
 ## Deliverable 4
 - Stored procedures which report some data, aka show amount of unpaid invoices from this month, number of new customers, etc
+- Required: 15
+  1. GetInvoicesByCustomer [GetInvoicesByCustomer.sql](SQL%2FDeliverable4_Reports%2FGetInvoicesByCustomer.sql)
+  2. GetInvoicesFromThisMonth [GetInvoicesFromThisMonth.sql](SQL%2FDeliverable4_Reports%2FGetInvoicesFromThisMonth.sql)
+  3. CustomersThatHaveUnpaidInvoices [CustomersThatHaveUnpaidInvoices.sql](SQL%2FDeliverable4_Reports%2FCustomersThatHaveUnpaidInvoices.sql)
+  4. CustomerView [CustomerView.sql](SQL%2FViews%2FCustomerView.sql)
+  5. GetUnpaidInvoices (toggleable json) [GetUnpaidInvoices.sql](SQL%2FDeliverable4_Reports%2FGetUnpaidInvoices.sql)
+  6. GetPaidInvoices (toggleable json) [GetPaidInvoices.sql](SQL%2FDeliverable4_Reports%2FGetPaidInvoices.sql)
+  7. GetStaleInvoices (haven't been touched in at least 30 days) [GetStaleInvoices.sql](SQL%2FDeliverable4_Reports%2FGetStaleInvoices.sql)
+  8. GetInvoicesByNum (toggleable json)
+  9. GetPricesForProduct
+  10. GetTotalBilledThisMonth
 
 ## Deliverable 7
 - Partial credit for describing without implementing it
@@ -19,7 +30,6 @@
 ## Deliverable 8
 - Data needs to be kept forever. Mark things as deleted instead of permanently deleting them.
 - Like 7, partial credit for describing without implementing
-
 ## Deliverable 9
 - At least 3 of the reports from from [Deliverable 4](#deliverable-4) need to return json
 
@@ -52,6 +62,8 @@
 - Mask the check numbers in the invoice payment record
 - Implement constraints to validate that a given enum value (like invoice status) is only one of the allowed values
 - Make table for invoice status instead of hardcoding varchar
+- Add more invoice statuses (overpaid, etc)
+- DO NOT SELECT c.* IN CUSTOMERS THAT HAVE UNPAID INVOICES
 
 
 

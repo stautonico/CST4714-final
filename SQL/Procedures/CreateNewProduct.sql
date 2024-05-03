@@ -17,7 +17,7 @@ BEGIN
         BEGIN
             PRINT CONCAT('Product with the name ', @name, ' and sku ', @sku, ' already exist');
             RETURN
-        end
+        END
 
     -- Step 2: Make sure we have all of the required fields
     IF @name IS NULL OR
@@ -25,7 +25,7 @@ BEGIN
         BEGIN
             PRINT 'Please provide all required fields'
             RETURN
-        end
+        END
 
     BEGIN TRY
         INSERT INTO S23916715.Product_ProfG_FP
@@ -39,11 +39,11 @@ BEGIN
 
         PRINT 'Successfully added new product'
 
-    end try
-    begin catch
+    END TRY
+    BEGIN CATCH
         PRINT 'Something went wrong when creating new product';
         RETURN
-    end catch
+    END CATCH
 
     SET NOCOUNT OFF
-end
+END

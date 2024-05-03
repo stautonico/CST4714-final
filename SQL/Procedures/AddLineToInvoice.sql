@@ -99,6 +99,13 @@ BEGIN
     END TRY
     BEGIN CATCH
         PRINT 'Something went wrong when inserting new line into invoice'
+        SELECT
+    ERROR_NUMBER() AS ErrorNumber
+    ,ERROR_SEVERITY() AS ErrorSeverity
+    ,ERROR_STATE() AS ErrorState
+    ,ERROR_PROCEDURE() AS ErrorProcedure
+    ,ERROR_LINE() AS ErrorLine
+    ,ERROR_MESSAGE() AS ErrorMessage;
         RETURN
     END CATCH
 

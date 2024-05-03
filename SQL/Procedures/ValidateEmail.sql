@@ -1,4 +1,4 @@
-CREATE PROCEDURE S23916715.ValidateEmail_ProfG_FP(
+CREATE OR ALTER PROCEDURE S23916715.ValidateEmail_ProfG_FP(
     @email VARCHAR(128),
     @isValid INT OUT
 )
@@ -30,20 +30,20 @@ BEGIN
         BEGIN
             SET @isValid = 0;
             RETURN
-        end
+        END
 
     -- Check for invalid characters
     IF CHARINDEX('`&\:;,\"-_<>[]()', @email) > 0
         BEGIN
             SET @isValid = 0;
             RETURN
-        end
+        END
 
     -- Make sure the username portion doesn't contain any '@'s
     IF CHARINDEX('@', SUBSTRING(@email, 0, @usernamePartLen)) > 0
         BEGIN
             SET @isValid = 0;
             RETURN
-        end
+        END
 
 END

@@ -1,5 +1,4 @@
-CREATE OR ALTER VIEW S23916715.View_Customers_ProfG_FP
-AS
+CREATE OR ALTER VIEW S23916715.View_Customers_ProfG_FP AS
 SELECT id,
        CONCAT(
                LEFT(email, 1), -- Grab the first letter from the username

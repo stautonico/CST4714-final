@@ -37,12 +37,12 @@ BEGIN
     -- Step 2b: If the user did not provide an invoice number, try to increment it from our variables table
     DECLARE @numVar VARCHAR(128);
 
-    SELECT @numVar = value FROM S23916715.Variables_ProfgG_FP WHERE [key] = 'invoice_accumulator';
+    SELECT @numVar = value FROM S23916715.Variables_ProfG_FP WHERE [key] = 'invoice_accumulator';
 
     IF @numVar IS NULL
         BEGIN
             -- We haven't started accumulating invoice numbers yet, so start from 1
-            INSERT INTO S23916715.Variables_ProfgG_FP ([key], value) VALUES ('invoice_accumulator', '1');
+            INSERT INTO S23916715.Variables_ProfG_FP ([key], value) VALUES ('invoice_accumulator', '1');
             SET @invoice_num = 1;
         END
     ELSE
@@ -50,7 +50,7 @@ BEGIN
             -- Convert the value to a INT
             SET @invoice_num = TRY_CAST(@numVar AS INT) + 1
             -- Now increment our accumulator in the database
-            UPDATE S23916715.Variables_ProfgG_FP
+            UPDATE S23916715.Variables_ProfG_FP
             SET value=TRY_CAST(@invoice_num AS VARCHAR)
             WHERE [key] = 'invoice_accumulator';
         END

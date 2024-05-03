@@ -22,7 +22,7 @@ BEGIN
         BEGIN
             PRINT CONCAT('Customer with email ', @email, ' already exists!');
             RETURN
-        end
+        END
 
     -- Step 2: Check if the given email is valid
     DECLARE @isValid INT;
@@ -41,7 +41,7 @@ BEGIN
         BEGIN
             PRINT 'Please provide all required fields'
             RETURN
-        end
+        END
 
 
     -- At this point we can insert our customer into our database
@@ -70,7 +70,7 @@ BEGIN
     BEGIN CATCH
         PRINT 'Something went wrong when creating new customer';
         RETURN
-    end catch
+    END CATCH
 
 
     SET NOCOUNT OFF
