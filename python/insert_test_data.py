@@ -66,8 +66,8 @@ def insert_fake_discount(cursor, count=50):
 
 def insert_fake_price(cursor, product_count=50, count=500):
     for x in range(count):
-        print(f"\b"*1000, end="")
-        print(f"{x+1}/{count}", end="")
+        print(f"\b" * 1000, end="")
+        print(f"{x + 1}/{count}", end="")
         sys.stdout.flush()
         template = f"""
         INSERT INTO S23916715.Price_ProfG_FP
@@ -77,7 +77,7 @@ def insert_fake_price(cursor, product_count=50, count=500):
         """
         cursor.execute(template)
 
-    print("\b"*1000, end="")
+    print("\b" * 1000, end="")
 
 
 def insert_fake_payment_method(cursor):
@@ -87,8 +87,8 @@ def insert_fake_payment_method(cursor):
 
 def insert_fake_invoice(cursor, customer_count=50, count=200):
     for x in range(count):
-        print(f"\b"*1000, end="")
-        print(f"{x+1}/{count}", end="")
+        print(f"\b" * 1000, end="")
+        print(f"{x + 1}/{count}", end="")
         sys.stdout.flush()
         desc = " ".join(text.words(10)).replace("'", "''")
         template = f"""
@@ -112,7 +112,7 @@ def insert_fake_invoice(cursor, customer_count=50, count=200):
 
         cursor.execute(template)
 
-    print("\b"*1000, end="")
+    print("\b" * 1000, end="")
 
 
 def get_prices_for_product(cursor, product_id):
@@ -131,8 +131,8 @@ def get_prices_for_product(cursor, product_id):
 
 def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, discount_count=50, count=500):
     for x in range(count):
-        print(f"\b"*1000, end="")
-        print(f"{x+1}/{count}", end="")
+        print(f"\b" * 1000, end="")
+        print(f"{x + 1}/{count}", end="")
         sys.stdout.flush()
         # Pick a random product
         prod_id = randint(1, product_count)
@@ -155,12 +155,33 @@ def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, discou
 
         # TODO: Add discounts
 
-    print("\b"*1000, end="")
+    print("\b" * 1000, end="")
 
 
-def insert_invoice_payment_record(cursor, count=250):
-    # TODO: Use stored procedure
-    pass
+def insert_invoice_payment_record(cursor, count=250, invoice_count=200):
+    for x in range(count):
+        print(f"\b" * 1000, end="")
+        print(f"{x + 1}/{count}", end="")
+        sys.stdout.flush()
+        # Pick a random payment method
+        methods = ["CHECK", "CASH", "CREDIT", "WIRE", "CRYPTO"]
+        rand_method = choice(methods)
+        check_num = None
+        if rand_method == "CHECK":
+            # Generate a random number for the check number
+            check_num = rand.generate_string_by_mask(mask="############")
+
+        template = f"""
+            EXECUTE S23916715.AddPaymentToInvoice_ProfG_FP
+            @invoice_num={randint(1, invoice_count)},
+            @amount={randint(1, 100000)},
+            @method='{rand_method}',
+            @check_num={'NULL' if check_num is None else check_num}
+            """
+
+        cursor.execute(template)
+
+    print("\b" * 1000, end="")
 
 
 def main():
@@ -182,6 +203,8 @@ def main():
     insert_fake_invoice(cursor)
     print("Making fake invoice lines")
     insert_fake_invoice_line(cursor)
+    print("Make fake invoice payment records")
+    insert_invoice_payment_record(cursor)
 
     print("All done")
 

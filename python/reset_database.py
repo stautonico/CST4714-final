@@ -37,10 +37,10 @@ def extract_from_folder(folder):
             iterator = 0
             line = code.split("\n")[iterator]
             while line.startswith("--"):
-                iterator+=1
+                iterator += 1
                 line = code.split("\n")[iterator]
 
-            expr = r"CREATE OR ALTER (PROCEDURE|VIEW) (S23916715\..*?)(?:\(| AS)"
+            expr = r"CREATE OR ALTER (PROCEDURE|VIEW|FUNCTION) (S23916715\..*?)(?:\(| AS)"
 
             matches = re.match(expr, line)
 
@@ -78,6 +78,7 @@ def make_procedures(cursor):
         with open(os.path.join("..", "SQL", "Procedures", file), "r") as f:
             code = f.read()
 
+            print(file)
             cursor.execute(code)
 
 
@@ -97,6 +98,22 @@ def make_views(cursor):
             cursor.execute(code)
 
 
+def drop_functions(cursor):
+    matches = extract_from_folder("Functions")
+
+    for match in matches:
+        type, name = match
+        cursor.execute(f"DROP {type} IF EXISTS {name}")
+
+
+def make_functions(cursor):
+    for file in os.listdir("../SQL/Functions"):
+        with open(os.path.join("..", "SQL", "Functions", file), "r") as f:
+            code = f.read()
+
+            cursor.execute(code)
+
+
 def main():
     nocreate = False
 
@@ -111,7 +128,6 @@ def main():
         else:
             print(f"Invalid argument(s): {' '.join(sys.argv[1:])}")
             exit(1)
-
 
     connection, cursor = database.init_connection()
 
@@ -149,6 +165,15 @@ def main():
     if not nocreate:
         print("Re-creating procedures...")
         make_procedures(cursor)
+        connection.commit()
+
+    print("Dropping functions...")
+    drop_functions(cursor)
+    connection.commit()
+
+    if not nocreate:
+        print("Re-creating functions...")
+        make_functions(cursor)
         connection.commit()
 
     print("All done!")

@@ -45,7 +45,7 @@ BEGIN
 
     IF @asJson = 1
         BEGIN
-            -- This is what happens when we're not allowed to use >:(
+            -- This is what happens when we're not allowed to use * >:(
             SELECT InvoiceID,
                    InvoiceNumber,
                    InvoiceCreated,
@@ -61,7 +61,7 @@ BEGIN
         END
     ELSE
         BEGIN
-            -- This is what happens when we're not allowed to use >:(
+            -- This is what happens when we're not allowed to use * >:(
             SELECT InvoiceID,
                    InvoiceNumber,
                    InvoiceCreated,
