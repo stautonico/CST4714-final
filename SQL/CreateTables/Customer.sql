@@ -9,5 +9,8 @@ CREATE TABLE S23916715.Customer_ProfG_FP
     address_line_two VARCHAR(128),
     city             VARCHAR(128) NOT NULL,
     state            CHAR(2)      NOT NULL,
-    zip_code         VARCHAR(16)  NOT NULL
+    zip_code         VARCHAR(16)  NOT NULL,
+    deleted          BIT                   DEFAULT 0,
+    invoice_count    INT          NOT NULL DEFAULT 0,
+    updated          DATETIME              DEFAULT SYSDATETIME()
 )

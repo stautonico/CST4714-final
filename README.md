@@ -1,7 +1,7 @@
 # Invoice Genie
 
 - Target company: Law firm
-- End users: Finance department at lawfirm
+- End users: Finance department at law firm
 
 # Deliverable 1
 - Tools: Technologies that would go with the database (the theoretical application)
@@ -25,7 +25,7 @@
   10. GetTotalBilledThisMonth 
   11. GetTotalPaidThisMonth
   12. CalculateRemainingBalance
-  13. GetInvoicePayments
+  13. GetInvoicePayments (uses data masking)
 
 ## Deliverable 7
 - Partial credit for describing without implementing it
@@ -68,6 +68,9 @@
 - Add more invoice statuses (overpaid, etc)
 - In proposal, note how all prices are stored in ints then converted to float
 - Draw ERD (after everything is done)
+- Think of another table to make
+- Write the last few triggers
+- For Q7, use profiling to identify slow or redundant queries, and optimize/improve them.
 
 
 
@@ -107,35 +110,12 @@ d. Explain your product’s contribution to the improvement of business
 3. Create, populate, and secure the entities (30 rows each via data pipeline stored procedure)
 4. Describe fifteen scripts/reports, how the newly implemented system would require for answering 15 typical questions.
    Be very descriptive.
-5. Data security: (at least three fields) client's sensitive data/information such as email/phone number/ credit cards
-   etc. are expected to be secure and masked when on display.
 6. Identify and describe the business rules/processes that will be automated by the database application.
 7. Business indicates that the system becomes very slow when some canned reports are running. There are numerous ways to
    resolve this issue, identify one and implement it.
-8. Data retention policy: data is kept indefinitely. There are numerous ways to resolve this issue, find one and
-   implement it.
-9. Generate at least three (3) payloads as Json output for downstream consumption. (hint: use requirement #4)
-10. Write and test four (4) user-defined functions.
-    - Functions must be used in either the stored procedures’ or the views’.
-11. Write and test seven (7) stored procedures to implement the business rules.
-    (
-    create new customer, DONE
-    create new invoice, DONE
-    create new product, DONE
-    add product to invoice (calls create new invoice if doesn't exist)
-    get invoices by customer, DONE
-    get unpaid invoices for this month DONE
-    )
-    - At least three (3) of the store procedures must have error handling in its processing
-    - At least two (2) of the store procedures must have transaction management in its processing
-    - At least one (1) of the store procedures must be nested – called by another store procedure and return a status to
-      its caller. The caller must evaluate the return status
-    - All seven (7) store procedures must have adequate and appropriate comments
 12. Write and test seven (7) triggers for seven (7) separate tables to implement the business rules.
 
-        At least two (2) of the trigger must be for delete
         At least one (1) of the trigger must be for insert
-        At least two (2) of the trigger must be for update
-        At least one (1) of the trigger must be for insert/delete/update
+        At least one (1) of the triggers must be for update
 
 13. Presentations 5/7 & 5/9 (audience consists of 75% business)

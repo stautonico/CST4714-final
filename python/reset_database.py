@@ -3,8 +3,8 @@ import os
 import re
 import sys
 
-TABLE_DROP_ORDER = ["Variables", "RevisionLine", "Revision", "InvoicePaymentRecord", "InvoiceLine", "Invoice",
-                    "InvoiceStatus", "PaymentMethod", "Price", "Discount", "DiscountType", "Product", "Customer"]
+TABLE_DROP_ORDER = ["Variables", "InvoicePaymentRecord", "InvoiceLine", "Invoice",
+                    "InvoiceStatus", "PaymentMethod", "Price", "Product", "Customer"]
 
 
 def drop_tables(c):
@@ -40,7 +40,7 @@ def extract_from_folder(folder):
                 iterator += 1
                 line = code.split("\n")[iterator]
 
-            expr = r"CREATE OR ALTER (PROCEDURE|VIEW|FUNCTION) (S23916715\..*?)(?:\(| AS)"
+            expr = r"CREATE OR ALTER (PROCEDURE|VIEW|FUNCTION|TRIGGER) (S23916715\..*?)(?:\(| AS)"
 
             matches = re.match(expr, line)
 
@@ -113,6 +113,35 @@ def make_functions(cursor):
             cursor.execute(code)
 
 
+def drop_triggers(cursor):
+    # I'm just going to do it by hand instead of trying to make the regex work
+    for file in os.listdir(f"../SQL/Triggers"):
+        with open(os.path.join("..", "SQL", "Triggers", file), "r") as f:
+            code = f.read()
+            # Extract the type and name
+            iterator = 0
+            line = code.split("\n")[iterator]
+            while line.startswith("--"):
+                iterator += 1
+                line = code.split("\n")[iterator]
+
+            expr = r"CREATE OR ALTER TRIGGER (S23916715\..*)"
+
+            matches = re.match(expr, line)
+
+            for match in matches.groups():
+                name = match
+                cursor.execute(f"DROP TRIGGER IF EXISTS {name}")
+
+
+def make_triggers(cursor):
+    for file in os.listdir("../SQL/Triggers"):
+        with open(os.path.join("..", "SQL", "Triggers", file), "r") as f:
+            code = f.read()
+
+            cursor.execute(code)
+
+
 def main():
     nocreate = False
 
@@ -175,6 +204,14 @@ def main():
         make_procedures(cursor)
         connection.commit()
 
+    print("Dropping triggers...")
+    drop_triggers(cursor)
+    connection.commit()
+
+    if not nocreate:
+        print("Re-creating triggers...")
+        make_triggers(cursor)
+        connection.commit()
 
     print("All done!")
     connection.commit()
@@ -184,5 +221,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-TABLE_DROP_ORDER = ["Variables", "RevisionLine", "Revision", ]

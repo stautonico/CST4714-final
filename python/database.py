@@ -7,9 +7,6 @@ PASSWORD = "!@$23916715t!"
 DRIVER = "{ODBC Driver 17 for SQL Server}"
 CONNECTION_STRING = f'DRIVER={DRIVER};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
 
-TABLE_DROP_ORDER = ["Variables", "RevisionLine", "Revision", "InvoicePaymentRecord", "InvoiceLine", "Invoice",
-                    "PaymentMethod", "Price", "Discount", "DiscountType", "Product", "Customer"]
-
 
 def init_connection():
     try:

@@ -5,7 +5,6 @@ CREATE OR ALTER PROCEDURE S23916715.AddNewLineToInvoice_ProfG_FP(
     @product_id INT = NULL,
     @price_id INT,
     @quantity INT,
-    @discount_id INT = NULL,
     @description VARCHAR(1024) = NULL,
     @inserted_id INT OUT
 )
@@ -75,22 +74,10 @@ BEGIN
             RETURN
         END
 
-    -- If we have a discount id, validate it
-    IF @discount_id IS NOT NULL
-        BEGIN
-            DECLARE @discountCount INT;
-            SELECT @discountCount = COUNT(*) FROM S23916715.Discount_ProfG_FP WHERE id = @discount_id;
-            IF @discountCount = 0
-                BEGIN
-                    PRINT 'Discount does not exist'
-                    RETURN
-                END
-        END
-
     -- Finally, insert our new invoice line
     BEGIN TRY
-        INSERT INTO S23916715.InvoiceLine_ProfG_FP (invoice, product, price, quantity, discount, description)
-        VALUES (@invoice_id, @product_id, @price_id, @quantity, @discount_id, @description);
+        INSERT INTO S23916715.InvoiceLine_ProfG_FP (invoice, product, price, quantity, description)
+        VALUES (@invoice_id, @product_id, @price_id, @quantity, @description);
 
         -- Set our output var to the new ID
         SET @inserted_id = SCOPE_IDENTITY();

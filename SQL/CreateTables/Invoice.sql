@@ -9,6 +9,8 @@ CREATE TABLE S23916715.Invoice_ProfG_FP
     status      INT        NOT NULL,
     customer    INT        NOT NULL,
     description VARCHAR(1024),
+    deleted     BIT        NOT NULL DEFAULT 0,
+
 
     FOREIGN KEY (customer) REFERENCES S23916715.Customer_ProfG_FP (id),
     FOREIGN KEY (status) REFERENCES S23916715.InvoiceStatus_ProfG_FP (id)

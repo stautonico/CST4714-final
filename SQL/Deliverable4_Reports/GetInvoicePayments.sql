@@ -21,7 +21,12 @@ BEGIN
 
     -- Step 2: Grab all the invoice payment records that match our invoice's id,
     --         as well as their associated methods and invoice
-    SELECT ipr.id, i.num, ipr.amount, ipr.date, m.method, ipr.check_num
+    SELECT ipr.id,
+           i.num,
+           ipr.amount,
+           ipr.date,
+           m.method,
+           IIF(ipr.check_num IS NOT NULL, CONCAT(REPLICATE('*', 4), RIGHT(ipr.check_num, 4)), NULL) AS maksed_check_num
     FROM S23916715.InvoicePaymentRecord_ProfG_FP AS ipr
              INNER JOIN S23916715.Invoice_ProfG_FP i ON i.id = ipr.invoice
              INNER JOIN S23916715.PaymentMethod_ProfG_FP m ON m.id = ipr.method

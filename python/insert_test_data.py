@@ -47,23 +47,6 @@ def insert_fake_products(cursor, count=50):
         """
         cursor.execute(template)
 
-
-def insert_discount_types(cursor):
-    for discount_type in ["FIXED", "PERCENT"]:
-        cursor.execute(f"INSERT INTO S23916715.DiscountType_ProfG_FP (type) VALUES ('{discount_type}')")
-
-
-def insert_fake_discount(cursor, count=50):
-    for x in range(count):
-        template = f"""
-        INSERT INTO S23916715.Discount_ProfG_FP
-        (amount, type)
-        VALUES
-        ({randint(1, 100)}, {randint(1, 2)})
-        """
-        cursor.execute(template)
-
-
 def insert_fake_price(cursor, product_count=50, count=500):
     for x in range(count):
         print(f"\b" * 1000, end="")
@@ -134,7 +117,7 @@ def get_prices_for_product(cursor, product_id):
     return out
 
 
-def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, discount_count=50, count=500):
+def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, count=500):
     for x in range(count):
         print(f"\b" * 1000, end="")
         print(f"{x + 1}/{count}", end="")
@@ -158,8 +141,6 @@ def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, discou
 
         cursor.execute(template)
 
-        # TODO: Add discounts
-
     print("\b" * 1000, end="")
 
 
@@ -174,7 +155,7 @@ def insert_invoice_payment_record(cursor, count=250, invoice_count=200):
         check_num = None
         if rand_method == "CHECK":
             # Generate a random number for the check number
-            check_num = rand.generate_string_by_mask(mask="############")
+            check_num = rand.generate_string_by_mask(mask="########")
 
         template = f"""
             EXECUTE S23916715.AddPaymentToInvoice_ProfG_FP
@@ -196,10 +177,6 @@ def main():
     insert_fake_customers(cursor)
     print("Making fake products")
     insert_fake_products(cursor)
-    print("Making fake discount types")
-    insert_discount_types(cursor)
-    print("Making fake discounts")
-    insert_fake_discount(cursor)
     print("Making fake prices")
     insert_fake_price(cursor)
     print("Making fake payment methods")

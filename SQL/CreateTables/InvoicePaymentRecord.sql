@@ -5,7 +5,7 @@ CREATE TABLE S23916715.InvoicePaymentRecord_ProfG_FP
     amount    INT      NOT NULL,
     date      DATETIME NOT NULL DEFAULT SYSDATETIME(),
     method    INT      NOT NULL,
-    check_num VARCHAR(32),
+    check_num CHAR(8),
 
     FOREIGN KEY (invoice) REFERENCES S23916715.Invoice_ProfG_FP (id),
     FOREIGN KEY (method) REFERENCES S23916715.PaymentMethod_ProfG_FP (id)
