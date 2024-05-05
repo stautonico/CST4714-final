@@ -7,4 +7,5 @@ FROM (SELECT SUM(CONVERT(BIGINT, il.quantity * p.amount)) AS Total
       WHERE YEAR(created) = YEAR(GETDATE())
         AND MONTH(created) = MONTH(GETDATE())
         AND status != 'CANCELLED'
+      AND deleted = 0
 ) AS Invoices;

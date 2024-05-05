@@ -17,3 +17,4 @@ FROM S23916715.Invoice_ProfG_FP AS i
 -- In theory, this also checks if the date is >= 30 days in the future, but the updated field
 -- should never be in the future so it doesn't really matter
 WHERE DATEDIFF(DAY, i.updated, GETDATE()) >= 30
+AND i.deleted = 0;

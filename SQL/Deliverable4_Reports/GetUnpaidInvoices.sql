@@ -20,7 +20,7 @@ BEGIN
     )
 
     INSERT INTO #UnpaidInvoices (InvoiceID, InvoiceNumber, InvoiceCreated, InvoiceUpdated, InvoiceStatus,
-                               InvoiceDescription, CustomerID, CustomerEmail, CustomerFirstName, CustomerLastName)
+                                 InvoiceDescription, CustomerID, CustomerEmail, CustomerFirstName, CustomerLastName)
     SELECT i.id                        AS InvoiceID,
            i.num                       AS InvoiceNumber,
            i.created                   AS InvoiceCreated,
@@ -35,7 +35,9 @@ BEGIN
              INNER JOIN
          S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
              INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
-    WHERE i.status NOT IN (S23916715.GetInvoiceStatusId('PAID'), S23916715.GetInvoiceStatusId('DRAFT'), S23916715.GetInvoiceStatusId('CANCELED'));
+    WHERE i.status NOT IN (S23916715.GetInvoiceStatusId('PAID'), S23916715.GetInvoiceStatusId('DRAFT'),
+                           S23916715.GetInvoiceStatusId('CANCELED'))
+      AND i.deleted = 0;
 
     IF @asJson = 1
         BEGIN

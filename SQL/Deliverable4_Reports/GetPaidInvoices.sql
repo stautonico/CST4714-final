@@ -35,7 +35,8 @@ BEGIN
              INNER JOIN
          S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
              INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
-    WHERE i.status = S23916715.GetInvoiceStatusId_ProfF_FP('PAID');
+    WHERE i.status = S23916715.GetInvoiceStatusId_ProfF_FP('PAID')
+    AND i.deleted = 0;
 
     IF @asJson = 1
         BEGIN

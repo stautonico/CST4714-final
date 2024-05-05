@@ -47,7 +47,8 @@ BEGIN
          S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
              INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
     WHERE (@customer_email IS NOT NULL AND c.email = @customer_email)
-       OR (@customer_id IS NOT NULL AND c.id = @customer_id);
+       OR (@customer_id IS NOT NULL AND c.id = @customer_id)
+    AND i.deleted = 0;
 
     SET NOCOUNT OFF
 END
