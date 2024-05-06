@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PDF (d4)" type="StardustRunConfiguration" factoryName="build-pdf">
+    <option name="addCover" value="true" />
+    <option name="addFooter" value="true" />
+    <option name="copyright" />
+    <option name="description" value="CST4714 Database Administration Spring 2024&#10;Prof G." />
+    <option name="folderPath" value="$PROJECT_DIR$/build" />
+    <option name="footer" value="CST4714 (Tautonico)" />
+    <option name="header" />
+    <option name="instanceId" value="d4" />
+    <option name="instanceName" value="Deliverable 4" />
+    <option name="layout" />
+    <option name="logoPath" />
+    <option name="title" value="Steven Tautonico CST4714 Final Project Technical Documentation" />
+    <method v="2" />
+  </configuration>
+</component>

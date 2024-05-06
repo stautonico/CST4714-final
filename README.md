@@ -71,6 +71,7 @@
 - Think of another table to make
 - Write the last few triggers
 - For Q7, use profiling to identify slow or redundant queries, and optimize/improve them.
+- Mark customers (and all of their invoices) as deleted (maybe use trigger)
 
 
 

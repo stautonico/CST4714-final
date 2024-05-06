@@ -18,4 +18,5 @@ SELECT id,
        city,
        state,
        zip_code
-FROM S23916715.Customer_ProfG_FP;
+FROM S23916715.Customer_ProfG_FP
+WHERE deleted = 0;
