@@ -8,4 +8,7 @@
 
     <toc-element topic="Tables.md"/>
     <toc-element topic="starter-topic.md"/>
+    <toc-element topic="Deliverable-10-Functions.md"/>
+    <toc-element topic="Deliverable-11-Procedures.md"/>
+    <toc-element topic="Deliverable-12-Triggers.md"/>
 </instance-profile>

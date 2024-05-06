@@ -85,14 +85,7 @@ BEGIN
         PRINT CONCAT('Successfully added line to in invoice num ', TRY_CAST(@invoice_num AS VARCHAR))
     END TRY
     BEGIN CATCH
-        PRINT 'Something went wrong when inserting new line into invoice'
-        SELECT
-    ERROR_NUMBER() AS ErrorNumber
-    ,ERROR_SEVERITY() AS ErrorSeverity
-    ,ERROR_STATE() AS ErrorState
-    ,ERROR_PROCEDURE() AS ErrorProcedure
-    ,ERROR_LINE() AS ErrorLine
-    ,ERROR_MESSAGE() AS ErrorMessage;
+        PRINT 'Something went wrong when inserting new line into invoice';
         RETURN
     END CATCH
 

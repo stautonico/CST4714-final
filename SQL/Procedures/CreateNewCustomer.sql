@@ -25,9 +25,14 @@ BEGIN
         END
 
     -- Step 2: Check if the given email is valid
-    DECLARE @isValid INT;
-    EXEC S23916715.ValidateEmail_ProfG_FP @email, @isValid OUT;
-    SELECT @isValid;
+    DECLARE @isValid BIT;
+    SET @isValid = S23916715.ValidateEmail_ProfG_FP(@email);
+
+    IF @isValid = 0
+        BEGIN
+            PRINT 'Please provide a valid email address'
+            RETURN
+        END
 
     -- Step 3: Make sure all of the provided fields aren't null
     -- Note: We don't need to check the email since our validate function does it
