@@ -18,9 +18,9 @@
 - Required: 15
     1. GetInvoicesByCustomer [GetInvoicesByCustomer.sql](SQL%2FDeliverable4_Reports%2FGetInvoicesByCustomer.sql)
     2.
-    GetInvoicesFromThisMonth [GetInvoicesFromThisMonth.sql](SQL%2FDeliverable4_Reports%2FGetInvoicesFromThisMonth.sql)
+  GetInvoicesFromThisMonth [GetInvoicesFromThisMonth.sql](SQL%2FDeliverable4_Reports%2FGetInvoicesFromThisMonth.sql)
     3.
-    CustomersThatHaveUnpaidInvoices [CustomersThatHaveUnpaidInvoices.sql](SQL%2FDeliverable4_Reports%2FCustomersThatHaveUnpaidInvoices.sql)
+  CustomersThatHaveUnpaidInvoices [CustomersThatHaveUnpaidInvoices.sql](SQL%2FDeliverable4_Reports%2FCustomersThatHaveUnpaidInvoices.sql)
     4. CustomerView [CustomerView.sql](SQL%2FViews%2FCustomerView.sql)
     5. GetUnpaidInvoices (toggleable json) [GetUnpaidInvoices.sql](SQL%2FDeliverable4_Reports%2FGetUnpaidInvoices.sql)
     6. GetPaidInvoices (toggleable json) [GetPaidInvoices.sql](SQL%2FDeliverable4_Reports%2FGetPaidInvoices.sql)
@@ -101,16 +101,9 @@ https://drawdb.vercel.app/editor
 
 TODO: Create trigger to set the `updated` field whenever an update happens
 
-
 3. Create, populate, and secure the entities (30 rows each via data pipeline stored procedure)
 4. Describe fifteen scripts/reports, how the newly implemented system would require for answering 15 typical questions.
    Be very descriptive.
 
 To write in the paper:
-name product.
-include description of org/department.
-explain audience.
-explain contribution to the business.
-describe 15 scripts.
-idntify and describe business/rules and processes that would be automated.
 systems become slow when things are running, identify and resolve.
