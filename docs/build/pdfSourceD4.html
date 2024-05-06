@@ -1,0 +1,1589 @@
+<html><head><meta charset="UTF-8"><script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script><style>
+        .article {
+            position: relative;
+            padding-bottom: 24px;
+        }
+        
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+
+        .center-text {
+            text-align: center;
+        }
+        
+
+        .code-block {
+            overflow: hidden;
+            position: relative;
+            padding: 0;
+            border-radius: 8px;
+            font-variant-ligatures: none;
+            background-color: rgba(25, 25, 28, .05);
+            word-break: break-all;
+        }
+        
+
+        .container {
+            max-width: 100%;
+            overflow: hidden;
+            page-break-inside: avoid;
+            display: block;
+        }
+        
+
+        .detached {
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-bottom: 8px;
+        }
+        
+
+        .header-row {
+            background: #e6e6e6;
+        }
+        
+
+        .image {
+            max-width: 100%;
+            max-height: 90vh;
+            width: auto;
+        }
+        
+
+        .image-container {
+            max-width: 100vw;
+        }
+        
+
+        .image-size {
+            height: auto;
+        }
+        
+
+        .inline-code {
+            border-radius: 4px;
+            display: inline;
+            padding: 2px 1px;
+            font-family: JetBrains Sans,monospace;
+            background: #e6e6e6;
+        }
+        
+
+        .main-title {
+            padding-bottom: 24px;
+            margin-top: 0;
+            font-size: 40px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+
+        .prism {
+            page-break-inside: avoid;
+        }
+        
+        /* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+armasm+arturo+asciidoc+aspnet+asm6502+asmatmel+autohotkey+autoit+avisynth+avro-idl+awk+bash+basic+batch+bbcode+bbj+bicep+birb+bison+bnf+bqn+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+cilkc+cilkcpp+clojure+cmake+cobol+coffeescript+concurnas+csp+cooklang+coq+crystal+css-extras+csv+cue+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gap+gcode+gdscript+gedcom+gettext+gherkin+git+glsl+gn+linker-script+go+go-module+gradle+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+hoon+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keepalived+keyman+kotlin+kumir+kusto+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+magma+makefile+markdown+markup-templating+mata+matlab+maxscript+mel+mermaid+metafont+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+odin+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plant-uml+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+cshtml+jsx+tsx+reason+regex+rego+renpy+rescript+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+stata+iecst+stylus+supercollider+swift+systemd+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+tremor+turtle+twig+typescript+typoscript+unrealscript+uorazor+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+web-idl+wgsl+wiki+wolfram+wren+xeora+xml-doc+xojo+xquery+yaml+yang+zig&plugins=highlight-keywords */
+code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:1em;text-align:left;white-space:pre-wrap;word-spacing:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-] ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:16px;margin:0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}
+
+        
+
+        :root {
+            width: 95%;
+            max-width: 95vw;
+            padding: 0 0 0 30px;
+        }
+        
+        body {
+            font-family: JetBrains Sans,serif;
+        }
+        
+        a {
+            overflow-wrap: anywhere;
+            width: 100vw;
+        }
+        
+        
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Light.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Light.woff) format("woff");
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Regular.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Regular.woff) format("woff");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-SemiBold.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-SemiBold.woff) format("woff");
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        
+        code {
+            display: inline;
+            word-break: break-word;
+            font-size: 15px;
+            line-height: inherit;
+            font-variant-ligatures: none;
+            font-family: JetBrains Sans,monospace;
+            white-space: pre-line;
+            overflow-wrap: break-word;
+        }
+        
+        figcaption {
+            margin-top: 5px;
+        }
+        
+        h2 {
+            padding-top: 16px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        h3 {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        h4 {
+            padding-top: 4px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        p {
+            padding: 0;
+            border: 0;
+            line-height: 25px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            padding-bottom: 8px;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            page-break-inside: avoid;
+        }
+        
+        th, td {
+            border: 1px solid #c4c4c4;
+            padding: 10px;
+            text-align: left;
+            word-break: break-all;
+        }
+        
+        .entry {
+            display: grid;
+            grid-template-columns: auto max-content;
+            grid-template-areas: "chapter page";
+            align-items: end;
+            gap: 0 .25rem;
+            line-height: 25px;
+        }
+        
+        .toc-link-container{
+            grid-area: chapter;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .toc-link{
+            text-decoration: none;
+            color: black;
+        }
+        
+        .toc-link-container::after {
+            position: absolute;
+            padding-left: .25ch;
+            content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+            text-align: right;
+        }
+        
+        .page {
+            grid-area: page;
+            width: 30px;
+            text-align: right;
+        }
+        
+
+        .table-wrapper {
+            overflow: hidden;
+            box-sizing: border-box;
+            font: inherit;
+        }
+        
+
+        .topic {
+            page-break-before: always;
+        }
+        </style></head><body><div><section class="topic"><div><article class="article"><h1 class="main-title">Table of contents</h1><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1797510523">Deliverable 2</a></div><div class="page">2</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-512279951">Deliverable 4 (Reports)</a></div><div class="page">7</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#856993915">Deliverable 10 (Functions)</a></div><div class="page">27</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#1397289087">Deliverable 11 (Business Logic Procedures)</a></div><div class="page">30</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1628700903">Deliverable 12 (Triggers)</a></div><div class="page">49</div></div></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1797510523">Deliverable 2</h1><section><h2 id="-1797510523#erd" data-toc="erd#Tables.md-erd">ERD</h2><div class="container"><figure class="image-container"><img class="center image image-size" id="-1797510523#-f81s4j_582" alt="Erd" title="Erd" src="/home/steve/Documents/GitHub/CST4714-final/docs/Writerside/images/ERD.jpg" width="6696" height="6464"><figcaption class="center-text">Erd</figcaption></figure></div></section><section><h2 id="-1797510523#a-table-code" data-toc="a-table-code#Tables.md-a-table-code">a. (Table code)</h2><section><h3 id="-1797510523#invoice" data-toc="invoice#Tables.md-invoice">Invoice</h3><div class="code-block detached" id="-1797510523#-f81s4j_583"><pre><code class="language-sql">CREATE TABLE S23916715.Invoice_ProfG_FP
+(
+    id          INT PRIMARY KEY IDENTITY (1,1),
+    num         INT UNIQUE NOT NULL,
+    created     DATETIME   NOT NULL DEFAULT SYSDATETIME(),
+    updated     DATETIME   NOT NULL DEFAULT SYSDATETIME(),
+    due         DATE       NOT NULL DEFAULT DATEADD(DAY, 30, GETDATE()),
+    paid        DATETIME, -- The timestamp when the invoice was paid
+    status      INT        NOT NULL,
+    customer    INT        NOT NULL,
+    description VARCHAR(1024),
+    deleted     BIT        NOT NULL DEFAULT 0,
+    lines       INT        NOT NULL DEFAULT 0,
+
+FOREIGN KEY (customer) REFERENCES S23916715.Customer_ProfG_FP (id),
+FOREIGN KEY (status) REFERENCES S23916715.InvoiceStatus_ProfG_FP (id)
+
+)</code></pre></div></section><section><h3 id="-1797510523#variables" data-toc="variables#Tables.md-variables">Variables</h3><div class="code-block detached" id="-1797510523#-f81s4j_584"><pre><code class="language-sql">-- Table used for keeping track of application variables
+CREATE TABLE S23916715.Variables_ProfG_FP
+(
+    id    INT PRIMARY KEY IDENTITY (1,1),
+    [key] VARCHAR(128) NOT NULL UNIQUE,
+    value VARCHAR(128) NOT NULL
+)</code></pre></div></section><section><h3 id="-1797510523#invoicepaymentrecord" data-toc="invoicepaymentrecord#Tables.md-invoicepaymentrecord">InvoicePaymentRecord</h3><div class="code-block detached" id="-1797510523#-f81s4j_585"><pre><code class="language-sql">CREATE TABLE S23916715.InvoicePaymentRecord_ProfG_FP
+(
+    id              INT PRIMARY KEY IDENTITY (1,1),
+    invoice         INT      NOT NULL,
+    amount          INT      NOT NULL,
+    date            DATETIME NOT NULL DEFAULT SYSDATETIME(),
+    method          INT      NOT NULL,
+    payment_account INT      NOT NULL,
+    check_num       CHAR(8),
+
+FOREIGN KEY (invoice) REFERENCES S23916715.Invoice_ProfG_FP (id),
+FOREIGN KEY (method) REFERENCES S23916715.PaymentMethod_ProfG_FP (id),
+FOREIGN KEY (payment_account) REFERENCES S23916715.PaymentAccount_ProfG_FP (id)
+
+)</code></pre></div></section><section><h3 id="-1797510523#invoiceline" data-toc="invoiceline#Tables.md-invoiceline">InvoiceLine</h3><div class="code-block detached" id="-1797510523#-f81s4j_586"><pre><code class="language-sql">CREATE TABLE S23916715.InvoiceLine_ProfG_FP
+(
+    id          INT PRIMARY KEY IDENTITY (1,1),
+    invoice     INT NOT NULL,
+    product     INT NOT NULL,
+    price       INT NOT NULL,
+    quantity    INT NOT NULL,
+    description VARCHAR(1024),
+
+FOREIGN KEY (invoice) REFERENCES S23916715.Invoice_ProfG_FP (id),
+FOREIGN KEY (product) REFERENCES S23916715.Product_ProfG_FP (id),
+FOREIGN KEY (price) REFERENCES S23916715.Price_ProfG_FP (id),
+
+)</code></pre></div></section><section><h3 id="-1797510523#paymentmethod" data-toc="paymentmethod#Tables.md-paymentmethod">PaymentMethod</h3><div class="code-block detached" id="-1797510523#-f81s4j_587"><pre><code class="language-sql">CREATE TABLE S23916715.PaymentMethod_ProfG_FP
+(
+    id     INT PRIMARY KEY IDENTITY (1,1),
+    method VARCHAR(20) NOT NULL, -- Possible values: CHECK, CASH, CREDIT, WIRE, CRYPTO
+)</code></pre></div></section><section><h3 id="-1797510523#price" data-toc="price#Tables.md-price">Price</h3><div class="code-block detached" id="-1797510523#-f81s4j_588"><pre><code class="language-sql">CREATE TABLE S23916715.Price_ProfG_FP
+(
+    id      INT PRIMARY KEY IDENTITY (1,1),
+    amount  INT NOT NULL,
+    product INT NOT NULL,
+
+FOREIGN KEY (product) REFERENCES S23916715.Product_ProfG_FP (id)
+
+)</code></pre></div></section><section><h3 id="-1797510523#product" data-toc="product#Tables.md-product">Product</h3><div class="code-block detached" id="-1797510523#-f81s4j_589"><pre><code class="language-sql">CREATE TABLE S23916715.Product_ProfG_FP
+(
+    id          INT PRIMARY KEY IDENTITY (1,1),
+    name        VARCHAR(128) NOT NULL,
+    description VARCHAR(1024),
+    sku         VARCHAR(128) NOT NULL
+)</code></pre></div></section><section><h3 id="-1797510523#customer" data-toc="customer#Tables.md-customer">Customer</h3><div class="code-block detached" id="-1797510523#-f81s4j_590"><pre><code class="language-sql">CREATE TABLE S23916715.Customer_ProfG_FP
+(
+    id               INT PRIMARY KEY IDENTITY (1,1),
+    email            VARCHAR(320) NOT NULL UNIQUE,
+    phone_num        VARCHAR(15)  NOT NULL,
+    first_name       VARCHAR(128) NOT NULL,
+    last_name        VARCHAR(128) NOT NULL,
+    address          VARCHAR(128) NOT NULL,
+    address_line_two VARCHAR(128),
+    city             VARCHAR(128) NOT NULL,
+    state            CHAR(2)      NOT NULL,
+    zip_code         VARCHAR(16)  NOT NULL,
+    deleted          BIT                   DEFAULT 0,
+    invoice_count    INT          NOT NULL DEFAULT 0,
+    updated          DATETIME              DEFAULT SYSDATETIME()
+)</code></pre></div></section><section><h3 id="-1797510523#invoicestatus" data-toc="invoicestatus#Tables.md-invoicestatus">InvoiceStatus</h3><div class="code-block detached" id="-1797510523#-f81s4j_591"><pre><code class="language-sql">CREATE TABLE S23916715.InvoiceStatus_ProfG_FP
+(
+    id     INT PRIMARY KEY IDENTITY (1,1),
+    status VARCHAR(10) NOT NULL,
+)</code></pre></div></section><section><h3 id="-1797510523#paymentaccount" data-toc="paymentaccount#Tables.md-paymentaccount">PaymentAccount</h3><div class="code-block detached" id="-1797510523#-f81s4j_592"><pre><code class="language-sql">CREATE TABLE S23916715.PaymentAccount_ProfG_FP
+(
+    id      INT PRIMARY KEY IDENTITY (1,1),
+    name    VARCHAR(128) NOT NULL,
+    balance INT          NOT NULL DEFAULT 0,
+    deleted BIT          NOT NULL DEFAULT 0
+)</code></pre></div></section></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-512279951">Deliverable 4 (Reports)</h1><section><h2 id="-512279951#1-get-invoices-by-customer" data-toc="1-get-invoices-by-customer#starter-topic.md-1-get-invoices-by-customer">1. Get Invoices by Customer</h2><p id="-512279951#-23x9mg_12742">This stored procedure takes either a customer's email address or the customer id number and returns all invoices that are associated with the given customer</p><div class="code-block detached" id="-512279951#-23x9mg_12743"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetInvoicesByCustomer_ProfG_FP(
+    @customer_email VARCHAR(320) = NULL,
+    @customer_id INT = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+    -- We need either the email or the id, not both, not neither
+    IF @customer_email IS NULL AND @customer_id IS NULL
+        BEGIN
+            PRINT 'Please provide either the customer email or the customer id';
+            RETURN
+        END
+
+IF @customer_email IS NOT NULL AND @customer_id IS NOT NULL
+    BEGIN
+        PRINT 'Please provide either the customer email or the customer id but not both';
+        RETURN
+    END
+
+-- Check if the customer exists
+DECLARE @findCustomerCount INT;
+SELECT @findCustomerCount = COUNT(*)
+FROM S23916715.Customer_ProfG_FP
+WHERE (@customer_email IS NOT NULL AND email = @customer_email)
+   OR (@customer_id IS NOT NULL AND id = @customer_id);
+
+IF @findCustomerCount = 0
+    BEGIN
+        PRINT 'Customer does not exist'
+        RETURN
+    END
+
+
+SELECT i.id                        AS InvoiceID,
+       i.num                       AS InvoiceNumber,
+       i.created                   AS InvoiceCreated,
+       i.updated                   AS InvoiceUpdated,
+       i.status                    AS InvoiceStatus,
+       i.description               AS InvoiceDescription,
+       c.id                        AS CustomerID,
+       maskedCustomer.masked_email AS CustomerEmail,
+       c.first_name                AS CustomerFirstName,
+       c.last_name                 AS CustomerLastName
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN
+     S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+         INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
+WHERE (@customer_email IS NOT NULL AND c.email = @customer_email)
+   OR (@customer_id IS NOT NULL AND c.id = @customer_id)
+AND i.deleted = 0;
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#2-get-invoices-from-this-month" data-toc="2-get-invoices-from-this-month#starter-topic.md-2-get-invoices-from-this-month">2. Get Invoices from this Month</h2><p id="-512279951#-23x9mg_12744">This stored procedure gets all the invoices that were created in the current month. It has an optional argument to specify an invoice status to filer by</p><div class="code-block detached" id="-512279951#-23x9mg_12745"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetInvoicesFromThisMonth_ProfG_FP(
+    @status VARCHAR(10) = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- Select all invoices that have a creation date that is within the last 30 days
+-- Optionally, include the status if it was provided
+
+SELECT i.id          AS InvoiceID,
+       i.num         AS InvoiceNumber,
+       i.created     AS InvoiceCreated,
+       i.updated     AS InvoiceUpdated,
+       i.status      AS InvoiceStatus,
+       i.description AS InvoiceDescription,
+       c.id          AS CustomerID,
+       c.email       AS CustomerEmail,
+       c.first_name  AS CustomerFirstName,
+       c.last_name   AS CustomerLastName
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN
+     S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+WHERE YEAR(created) = YEAR(GETDATE())
+  AND MONTH(created) = MONTH(GETDATE())
+  -- I'm pretty sure this server is configured to be case-insensitive,
+  -- so we don't need to worry about changing the case (the db should store all upper case)
+  AND (@status IS NULL OR status = S23916715.GetInvoiceStatusId_ProfF_FP(@status))
+  AND i.deleted = 0;
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#3-customers-that-have-unpaid-invoices" data-toc="3-customers-that-have-unpaid-invoices#starter-topic.md-3-customers-that-have-unpaid-invoices">3. Customers that have Unpaid Invoices</h2><p id="-512279951#-23x9mg_12746">This view returns all customers that have an invoice which isn't paid or canceled. This view implements data masking to hide sensitive fields such as phone number and email addresses.</p><div class="code-block detached" id="-512279951#-23x9mg_12747"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.CustomersThatHaveUnpaidInvoices_ProfG_FP AS
+SELECT c.id,
+       c.masked_email,
+       c.masked_phone_number,
+       c.first_name,
+       c.last_name,
+       COUNT(i.id) AS unpaid_invoice_count
+FROM S23916715.View_Customers_ProfG_FP c
+         LEFT JOIN S23916715.Invoice_ProfG_FP i ON c.id = i.customer
+WHERE i.status NOT IN (S23916715.GetInvoiceStatusId_ProfF_FP('PAID'), S23916715.GetInvoiceStatusId_ProfF_FP('DRAFT'),
+                       S23916715.GetInvoiceStatusId_ProfF_FP('CANCELED'))
+   OR i.id IS NULL AND i.deleted = 0
+GROUP BY c.id, c.masked_email, c.masked_phone_number, c.first_name, c.last_name;</code></pre></div></section><section><h2 id="-512279951#4-customer-view" data-toc="4-customer-view#starter-topic.md-4-customer-view">4. Customer View</h2><p id="-512279951#-23x9mg_12748">This view displays all the customers registered in the system. This view implements data masking to hide sensitive fields such as phone number and email addresses.</p><div class="code-block detached" id="-512279951#-23x9mg_12749"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.View_Customers_ProfG_FP AS
+SELECT id,
+       CONCAT(
+               LEFT(email, 1), -- Grab the first letter from the username
+               REPLICATE('*',
+                         LEN(SUBSTRING(email, 2, CHARINDEX('@', email) - 2))), -- Mask everything in between the first and last letter of the username portion of the address
+               RIGHT(email, 1), -- Grab the first letter from the username
+               SUBSTRING(email, CHARINDEX('@', email), LEN(email)) -- Append the domain
+       ) AS masked_email,
+       CONCAT(
+               '***-***-',
+               SUBSTRING(phone_num, 9, 4)
+       ) AS masked_phone_number,
+       first_name,
+       last_name,
+       address,
+       address_line_two,
+       city,
+       state,
+       zip_code
+FROM S23916715.Customer_ProfG_FP
+WHERE deleted = 0;</code></pre></div></section><section><h2 id="-512279951#5-get-unpaid-invoices" data-toc="5-get-unpaid-invoices#starter-topic.md-5-get-unpaid-invoices">5. Get Unpaid Invoices</h2><p id="-512279951#-23x9mg_12750">This stored procedure gets all invoices that aren't <span class="inline-code" id="-512279951#-23x9mg_12751">PAID</span>, <span class="inline-code" id="-512279951#-23x9mg_12752">DRAFT</span> OR <span class="inline-code" id="-512279951#-23x9mg_12753">CANCELED</span>. This procedure also has an optional <span class="inline-code" id="-512279951#-23x9mg_12754">asJson</span> argument which will output the result as a JSON string. This procedure implements data masking that disguises customer email and phone number.</p><div class="code-block detached" id="-512279951#-23x9mg_12755"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetUnpaidInvoices(
+    @asJson BIT = 0
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+CREATE TABLE #UnpaidInvoices
+(
+    InvoiceID          INT,
+    InvoiceNumber      INT,
+    InvoiceCreated     DATETIME,
+    InvoiceUpdated     DATETIME,
+    InvoiceStatus      VARCHAR(10),
+    InvoiceDescription VARCHAR(1024),
+    CustomerID         INT,
+    CustomerEmail      VARCHAR(320),
+    CustomerFirstName  VARCHAR(128),
+    CustomerLastName   VARCHAR(128)
+)
+
+INSERT INTO #UnpaidInvoices (InvoiceID, InvoiceNumber, InvoiceCreated, InvoiceUpdated, InvoiceStatus,
+                             InvoiceDescription, CustomerID, CustomerEmail, CustomerFirstName, CustomerLastName)
+SELECT i.id                        AS InvoiceID,
+       i.num                       AS InvoiceNumber,
+       i.created                   AS InvoiceCreated,
+       i.updated                   AS InvoiceUpdated,
+       i.status                    AS InvoiceStatus,
+       i.description               AS InvoiceDescription,
+       c.id                        AS CustomerID,
+       maskedCustomer.masked_email AS CustomerEmail,
+       c.first_name                AS CustomerFirstName,
+       c.last_name                 AS CustomerLastName
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN
+     S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+         INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
+WHERE i.status NOT IN (S23916715.GetInvoiceStatusId('PAID'), S23916715.GetInvoiceStatusId('DRAFT'),
+                       S23916715.GetInvoiceStatusId('CANCELED'))
+  AND i.deleted = 0;
+
+IF @asJson = 1
+    BEGIN
+        -- This is what happens when we're not allowed to use *
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerID,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName
+        FROM #UnpaidInvoices
+        FOR JSON PATH;
+    END
+ELSE
+    BEGIN
+        -- This is what happens when we're not allowed to use *
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerID,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName
+        FROM #UnpaidInvoices;
+    END
+
+DROP TABLE #UnpaidInvoices;
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#6-get-paid-invoices" data-toc="6-get-paid-invoices#starter-topic.md-6-get-paid-invoices">6. Get Paid Invoices</h2><p id="-512279951#-23x9mg_12756">This stored procedure gets all invoices that have a status of <span class="inline-code" id="-512279951#-23x9mg_12757">PAID</span> This procedure also has an optional <span class="inline-code" id="-512279951#-23x9mg_12758">asJson</span> argument which will output the result as a JSON string. This procedure implements data masking that disguises customer email and phone number.</p><div class="code-block detached" id="-512279951#-23x9mg_12759"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetPaidInvoices(
+    @asJson BIT = 0
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+CREATE TABLE #PaidInvoices
+(
+    InvoiceID          INT,
+    InvoiceNumber      INT,
+    InvoiceCreated     DATETIME,
+    InvoiceUpdated     DATETIME,
+    InvoiceStatus      VARCHAR(10),
+    InvoiceDescription VARCHAR(1024),
+    CustomerID         INT,
+    CustomerEmail      VARCHAR(320),
+    CustomerFirstName  VARCHAR(128),
+    CustomerLastName   VARCHAR(128)
+)
+
+INSERT INTO #PaidInvoices (InvoiceID, InvoiceNumber, InvoiceCreated, InvoiceUpdated, InvoiceStatus,
+                           InvoiceDescription, CustomerID, CustomerEmail, CustomerFirstName, CustomerLastName)
+SELECT i.id                        AS InvoiceID,
+       i.num                       AS InvoiceNumber,
+       i.created                   AS InvoiceCreated,
+       i.updated                   AS InvoiceUpdated,
+       i.status                    AS InvoiceStatus,
+       i.description               AS InvoiceDescription,
+       c.id                        AS CustomerID,
+       maskedCustomer.masked_email AS CustomerEmail,
+       c.first_name                AS CustomerFirstName,
+       c.last_name                 AS CustomerLastName
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN
+     S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+         INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
+WHERE i.status = S23916715.GetInvoiceStatusId_ProfF_FP('PAID')
+AND i.deleted = 0;
+
+IF @asJson = 1
+    BEGIN
+        -- This is what happens when we're not allowed to use * :(
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerID,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName
+        FROM #PaidInvoices
+        FOR JSON PATH;
+    END
+ELSE
+    BEGIN
+        -- This is what happens when we're not allowed to use * :(
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerID,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName
+        FROM #PaidInvoices;
+    END
+
+DROP TABLE #PaidInvoices;
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#7-get-stale-invoices" data-toc="7-get-stale-invoices#starter-topic.md-7-get-stale-invoices">7. Get Stale Invoices</h2><p id="-512279951#-23x9mg_12760">This view returns all invoices that are &quot;stale.&quot; A stale invoice is defined as an invoice that hasn't been updated in at least 30 days. This view implements data masking that disguises customer email and phone number.</p><div class="code-block detached" id="-512279951#-23x9mg_12761"><pre><code class="language-sql">-- Get invoices that haven't been modified in at least 30 days
+CREATE OR ALTER VIEW S23916715.GetStaleInvoices_ProfG_FP AS
+SELECT i.id                        AS InvoiceID,
+       i.num                       AS InvoiceNumber,
+       i.created                   AS InvoiceCreated,
+       i.updated                   AS InvoiceUpdated,
+       i.status                    AS InvoiceStatus,
+       i.description               AS InvoiceDescription,
+       c.id                        AS CustomerID,
+       maskedCustomer.masked_email AS CustomerEmail,
+       c.first_name                AS CustomerFirstName,
+       c.last_name                 AS CustomerLastName
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN
+     S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+         INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
+-- In theory, this also checks if the date is &gt;= 30 days in the future, but the updated field
+-- should never be in the future so it doesn't really matter
+WHERE DATEDIFF(DAY, i.updated, GETDATE()) &gt;= 30
+AND i.deleted = 0;</code></pre></div></section><section><h2 id="-512279951#8-get-invoices-by-number" data-toc="8-get-invoices-by-number#starter-topic.md-8-get-invoices-by-number">8. Get Invoices by Number</h2><p id="-512279951#-23x9mg_12762">This procedure gets an invoice provided the invoice number (different from the id.) This procedure has an optional <span class="inline-code" id="-512279951#-23x9mg_12763">asJson</span> argument which will output the result as a JSON string. This procedure implements data masking that disguises customer email and phone number.</p><div class="code-block detached" id="-512279951#-23x9mg_12764"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetInvoiceByNum_ProfG_FP(
+    @invoice_num INT,
+    @asJson BIT = 0
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+CREATE TABLE #invoices
+(
+    InvoiceID          INT,
+    InvoiceNumber      INT,
+    InvoiceCreated     DATETIME,
+    InvoiceUpdated     DATETIME,
+    InvoiceStatus      VARCHAR(10),
+    InvoiceDescription VARCHAR(1024),
+    CustomerEmail      VARCHAR(320),
+    CustomerFirstName  VARCHAR(128),
+    CustomerLastName   VARCHAR(128),
+    Total              FLOAT
+);
+
+INSERT INTO #invoices (InvoiceID, InvoiceNumber, InvoiceCreated, InvoiceUpdated, InvoiceStatus, InvoiceDescription,
+                       CustomerEmail, CustomerFirstName, CustomerLastName, Total)
+SELECT i.id                                                 AS InvoiceID,
+       i.num                                                AS InvoiceNumber,
+       i.created                                            AS InvoiceCreated,
+       i.updated                                            AS InvoiceUpdated,
+       i.status                                             AS InvoiceStatus,
+       i.description                                        AS InvoiceDescription,
+       maskedCustomer.masked_email                          AS CustomerEmail,
+       c.first_name                                         AS CustomerFirstName,
+       c.last_name                                          AS CustomerLastName,
+       -- We store all money amounts as ints (aka x100) since computers make floating point mistakes.
+       -- When we want to display a money amount, we have to divide by 100
+       TRY_CAST(SUM(il.quantity * p.amount) AS FLOAT) / 100 AS Total
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN S23916715.Customer_ProfG_FP AS c ON i.customer = c.id
+         INNER JOIN View_Customers_ProfG_FP AS maskedCustomer ON i.customer = maskedCustomer.id
+         INNER JOIN S23916715.InvoiceLine_ProfG_FP AS il ON i.id = il.invoice
+         INNER JOIN S23916715.Price_ProfG_FP AS p ON il.price = p.id
+WHERE i.num = @invoice_num
+GROUP BY i.id, i.num, i.created, i.updated, i.status, i.description, maskedCustomer.masked_email,
+         c.first_name, c.last_name;
+
+IF @asJson = 1
+    BEGIN
+        -- This is what happens when we're not allowed to use * &gt;:(
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName,
+               Total
+        FROM #invoices
+        FOR JSON PATH;
+    END
+ELSE
+    BEGIN
+        -- This is what happens when we're not allowed to use * &gt;:(
+        SELECT InvoiceID,
+               InvoiceNumber,
+               InvoiceCreated,
+               InvoiceUpdated,
+               InvoiceStatus,
+               InvoiceDescription,
+               CustomerEmail,
+               CustomerFirstName,
+               CustomerLastName,
+               Total
+        FROM #invoices;
+    END
+
+DROP TABLE #invoices;
+
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#9-get-prices-for-product" data-toc="9-get-prices-for-product#starter-topic.md-9-get-prices-for-product">9. Get Prices for Product</h2><p id="-512279951#-23x9mg_12765">This procedure gets all the prices associated with a product. This procedure takes either a product id or a product name &amp; sku. If both or neither are provided, the procedure throws an error</p><div class="code-block detached" id="-512279951#-23x9mg_12766"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.GetPricesForProduct_ProfG_FP(
+    @product_id INT = NULL,
+    @product_name VARCHAR(128) = NULL,
+    @product_sku VARCHAR(128) = NULL
+)
+AS
+BEGIN
+    -- We can't have both id and product&amp;sku
+    IF @product_id IS NOT NULL AND @product_sku IS NOT NULL AND @product_name IS NOT NULL
+        BEGIN
+            PRINT 'You can''t provide both product ID and product name&amp;sku'
+            RETURN
+        END
+        -- We have to have at least one of the two
+    ELSE
+        IF @product_id IS NULL AND (@product_name IS NULL OR @product_sku IS NULL)
+            BEGIN
+                PRINT 'You must provide at least product ID or product name&amp;sku'
+                RETURN
+            END
+
+-- If we don't have the product id, we need to find it
+IF @product_id IS NULL
+    BEGIN
+        SELECT @product_id = id FROM S23916715.Product_ProfG_FP WHERE name = @product_name AND sku = @product_sku;
+
+        IF @product_sku IS NULL
+            BEGIN
+                PRINT CONCAT('Product with name ', @product_name, ' and sku ', @product_sku, ' doesn''t exist')
+                RETURN
+            END
+    END
+
+SELECT id,
+       TRY_CAST(amount AS FLOAT) / 100 AS price
+FROM S23916715.Price_ProfG_FP
+WHERE product = @product_id;
+
+END</code></pre></div></section><section><h2 id="-512279951#10-get-total-billed-this-month" data-toc="10-get-total-billed-this-month#starter-topic.md-10-get-total-billed-this-month">10. Get Total Billed this Month</h2><p id="-512279951#-23x9mg_12767">This view gets all invoices that were created during the current month, aren't canceled and aren't marked as deleted, then totals up the amount billed. The value is returned as a float.</p><div class="code-block detached" id="-512279951#-23x9mg_12768"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.GetTotalBilledThisMonth_ProfG_FP AS
+SELECT CONVERT(FLOAT, SUM(CONVERT(BIGINT, Total))) / 100 AS GrandTotal
+FROM (SELECT SUM(CONVERT(BIGINT, il.quantity * p.amount)) AS Total
+      FROM S23916715.Invoice_ProfG_FP AS i
+               INNER JOIN S23916715.InvoiceLine_ProfG_FP AS il ON i.id = il.invoice
+               INNER JOIN S23916715.Price_ProfG_FP AS p ON il.price = p.id
+      WHERE YEAR(created) = YEAR(GETDATE())
+        AND MONTH(created) = MONTH(GETDATE())
+        AND status != 'CANCELLED'
+      AND deleted = 0
+) AS Invoices;</code></pre></div></section><section><h2 id="-512279951#11-get-total-paid-this-month" data-toc="11-get-total-paid-this-month#starter-topic.md-11-get-total-paid-this-month">11. Get Total Paid this Month</h2><p id="-512279951#-23x9mg_12769">This view gets all payment records for invoices that were created during the current month, then totals up the amount billed. The value is returned as a float. This view also includes payments on invoices that aren't 100% paid off (partial payments.)</p><div class="code-block detached" id="-512279951#-23x9mg_12770"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.GetTotalPaidThisMonth_ProfG_FP AS
+SELECT CONVERT(FLOAT, SUM(CONVERT(BIGINT, Total))) / 100 AS GrandTotal
+FROM (SELECT SUM(CONVERT(BIGINT, amount)) AS Total
+      FROM S23916715.InvoicePaymentRecord_ProfG_FP
+      WHERE YEAR(date) = YEAR(GETDATE())
+        AND MONTH(date) = MONTH(GETDATE())
+) AS Records;</code></pre></div></section><section><h2 id="-512279951#12-calculate-remaining-balance" data-toc="12-calculate-remaining-balance#starter-topic.md-12-calculate-remaining-balance">12. Calculate Remaining Balance</h2><p id="-512279951#-23x9mg_12771">This function, given an invoice number, calculates the remaining balance on an invoice by totaling up the amount paid on every payment record that refers to the given invoice and subtracting the total cost. This function is used in several places for business logic but can also be used to generate reporting data.</p><div class="code-block detached" id="-512279951#-23x9mg_12772"><pre><code class="language-sql">CREATE OR ALTER FUNCTION S23916715.CalculateRemainingBalance_ProfF_FP(@invoice_num INT)
+    RETURNS FLOAT
+AS
+BEGIN
+    -- Try and find the invoice id
+    DECLARE @invoice_id INT;
+
+SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+
+IF @invoice_id IS NULL
+    RETURN -1
+
+-- Go grab the invoice and its total cost
+DECLARE @totalValue BIGINT;
+
+SELECT @totalValue = SUM(il.quantity * p.amount)
+FROM S23916715.Invoice_ProfG_FP AS i
+         INNER JOIN S23916715.InvoiceLine_ProfG_FP AS il ON i.id = il.invoice
+         INNER JOIN S23916715.Price_ProfG_FP AS p ON il.price = p.id
+WHERE i.num = @invoice_num;
+
+-- Now total up the amount paid
+DECLARE @amountPaid BIGINT;
+
+SET @amountPaid = S23916715.FindAmountPaid_ProfF_FP(@invoice_num);
+
+RETURN TRY_CAST(@totalValue - @amountPaid AS FLOAT) / 100;
+
+END</code></pre></div></section><section><h2 id="-512279951#13-get-invoice-payments" data-toc="13-get-invoice-payments#starter-topic.md-13-get-invoice-payments">13. Get Invoice Payments</h2><p id="-512279951#-23x9mg_12773">This procedure gets all payments associated with the given invoice number. This procedure implements data masking by only displaying the last four digits of the check number (if one exists)</p><div class="code-block detached" id="-512279951#-23x9mg_12774"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.View_GetInvoicePayments_ProfG_FP(
+    @invoice_num INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- TODO: Mask the check number if there is one
+-- TODO: THIS SHIT DON'T WORK. I think its something wrong with the joins. Break it down and try later
+
+-- Step 1: Make sure our invoice exists
+DECLARE @invoice_id INT;
+
+SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+
+IF @invoice_id IS NULL
+    BEGIN
+        PRINT CONCAT('Invoice with num ', @invoice_num, ' doesn''t exist')
+        RETURN
+    END
+
+-- Step 2: Grab all the invoice payment records that match our invoice's id,
+--         as well as their associated methods and invoice
+SELECT ipr.id,
+       i.num,
+       ipr.amount,
+       ipr.date,
+       m.method,
+       IIF(ipr.check_num IS NOT NULL, CONCAT(REPLICATE('*', 4), RIGHT(ipr.check_num, 4)), NULL) AS maksed_check_num
+FROM S23916715.InvoicePaymentRecord_ProfG_FP AS ipr
+         INNER JOIN S23916715.Invoice_ProfG_FP i ON i.id = ipr.invoice
+         INNER JOIN S23916715.PaymentMethod_ProfG_FP m ON m.id = ipr.method
+WHERE ipr.invoice = @invoice_id;
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="-512279951#14-find-amount-paid" data-toc="14-find-amount-paid#starter-topic.md-14-find-amount-paid">14. Find Amount Paid</h2><p id="-512279951#-23x9mg_12775">This function, given an invoice number, calculates the balance paid on an invoice by totaling up the amount paid on every payment record that refers to the given invoice. This function is used in several places for business logic but can also be used to generate reporting data.</p><div class="code-block detached" id="-512279951#-23x9mg_12776"><pre><code class="language-sql">CREATE OR ALTER FUNCTION S23916715.FindAmountPaid_ProfF_FP(@invoice_num INT)
+    RETURNS FLOAT
+AS
+BEGIN
+    -- Try and find the invoice id
+    DECLARE @invoice_id INT;
+
+SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+
+IF @invoice_id IS NULL
+    RETURN -1
+
+-- Find all of the payment records that reference this invoice
+DECLARE @amountPaid BIGINT;
+
+SELECT @amountPaid = SUM(amount)
+FROM S23916715.InvoicePaymentRecord_ProfG_FP
+WHERE invoice = @invoice_id;
+
+RETURN @amountPaid;
+
+END</code></pre></div></section><section><h2 id="-512279951#15-get-total-billed-this-year" data-toc="15-get-total-billed-this-year#starter-topic.md-15-get-total-billed-this-year">15. Get Total Billed this Year</h2><p id="-512279951#-23x9mg_12777">This view gets all invoices that were created during the current year, aren't canceled and aren't marked as deleted, then totals up the amount billed. The value is returned as a float.</p><div class="code-block detached" id="-512279951#-23x9mg_12778"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.GetTotalBilledThisYear_ProfG_FP AS
+SELECT CONVERT(FLOAT, SUM(CONVERT(BIGINT, Total))) / 100 AS GrandTotal
+FROM (SELECT SUM(CONVERT(BIGINT, il.quantity * p.amount)) AS Total
+      FROM S23916715.Invoice_ProfG_FP AS i
+               INNER JOIN S23916715.InvoiceLine_ProfG_FP AS il ON i.id = il.invoice
+               INNER JOIN S23916715.Price_ProfG_FP AS p ON il.price = p.id
+      WHERE YEAR(created) = YEAR(GETDATE())
+        AND status != 'CANCELLED'
+        AND deleted = 0) AS Invoices;</code></pre></div></section><section><h2 id="-512279951#16-get-total-paid-this-year" data-toc="16-get-total-paid-this-year#starter-topic.md-16-get-total-paid-this-year">16. Get Total Paid this Year</h2><p id="-512279951#-23x9mg_12779">This view gets all payment records for invoices that were created during the current year, then totals up the amount billed. The value is returned as a float. This view also includes payments on invoices that aren't 100% paid off (partial payments.)</p><div class="code-block detached" id="-512279951#-23x9mg_12780"><pre><code class="language-sql">CREATE OR ALTER VIEW S23916715.GetTotalPaidThisYear_ProfG_FP AS
+SELECT CONVERT(FLOAT, SUM(CONVERT(BIGINT, Total))) / 100 AS GrandTotal
+FROM (SELECT SUM(CONVERT(BIGINT, amount)) AS Total
+      FROM S23916715.InvoicePaymentRecord_ProfG_FP
+      WHERE YEAR(date) = YEAR(GETDATE())) AS Records;</code></pre></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="856993915">Deliverable 10 (Functions)</h1><section><h2 id="856993915#1-get-invoice-status-id" data-toc="1-get-invoice-status-id#Deliverable-10-Functions.md-1-get-invoice-status-id">1. Get Invoice Status ID</h2><p id="856993915#-662ezf_727">Given the status name (as a <span class="inline-code" id="856993915#-662ezf_728">VARCHAR</span>), return the ID (PK) of the status</p><div class="code-block detached" id="856993915#-662ezf_729"><pre><code class="language-sql">CREATE OR ALTER FUNCTION S23916715.GetInvoiceStatusId_ProfF_FP(@status VARCHAR(128))
+    RETURNS INT
+AS
+BEGIN
+    -- Try to find the status by the value
+    DECLARE @status_id INT;
+
+SELECT @status_id = id FROM S23916715.InvoiceStatus_ProfG_FP WHERE status = @status;
+
+RETURN @status_id;
+
+END</code></pre></div></section><section><h2 id="856993915#2-get-payment-method-id" data-toc="2-get-payment-method-id#Deliverable-10-Functions.md-2-get-payment-method-id">2. Get Payment Method ID</h2><p id="856993915#-662ezf_730">Given the payment method name (as a <span class="inline-code" id="856993915#-662ezf_731">VARCHAR</span>), return the ID (PK) of the <span class="inline-code" id="856993915#-662ezf_732">PaymentMethod</span></p><div class="code-block detached" id="856993915#-662ezf_733"><pre><code class="language-sql">CREATE OR ALTER FUNCTION S23916715.GetPaymentMethodId_ProfF_FP(@payment_method VARCHAR(128))
+    RETURNS INT
+AS
+BEGIN
+    -- Try to find the payment method by the value
+    DECLARE @method_id INT;
+
+SELECT @method_id = id FROM S23916715.PaymentMethod_ProfG_FP WHERE method = @payment_method;
+
+RETURN @method_id;
+
+END</code></pre></div></section><section><h2 id="856993915#3-calculate-remaining-balance" data-toc="3-calculate-remaining-balance#Deliverable-10-Functions.md-3-calculate-remaining-balance">3. Calculate Remaining Balance</h2><p id="856993915#-662ezf_734">See Deliverable 4 #12 (<a href="#-512279951#12-calculate-remaining-balance">&quot;12. Calculate Remaining Balance&quot; in &quot;Deliverable 4 (Reports)&quot;</a>)</p></section><section><h2 id="856993915#4-find-amount-paid" data-toc="4-find-amount-paid#Deliverable-10-Functions.md-4-find-amount-paid">4. Find Amount Paid</h2><p id="856993915#-662ezf_736">See Deliverable 4 #14 (<a href="#-512279951#14-find-amount-paid">&quot;14. Find Amount Paid&quot; in &quot;Deliverable 4 (Reports)&quot;</a>)</p></section><section><h2 id="856993915#5-validate-email" data-toc="5-validate-email#Deliverable-10-Functions.md-5-validate-email">5. Validate Email</h2><p id="856993915#-662ezf_738">This function is a reusable function designed to simplify code in some logic functions. It takes an email address and checks if the email is valid and returns a <span class="inline-code" id="856993915#-662ezf_739">BIT</span></p><div class="code-block detached" id="856993915#-662ezf_740"><pre><code class="language-sql">CREATE OR ALTER FUNCTION S23916715.ValidateEmail_ProfG_FP(
+    @email VARCHAR(128)
+)
+    RETURNS BIT
+AS
+BEGIN
+    -- Valid by default
+
+-- This function tries its best to check if a provided email is valid
+DECLARE @usernamePartLen INT;
+DECLARE @domainPartLen INT;
+DECLARE @pos INT;
+
+-- Check if we have '@'
+SET @pos = CHARINDEX('@', @email);
+IF @pos = 0 OR @pos = LEN(@email)
+    RETURN 0;
+
+-- Make sure we don't have &gt; 1 '@'
+DECLARE @atCount INT;
+SET @atCount = LEN(@email) - LEN(REPLACE(@email, '@', ''));
+
+IF @atCount != 1
+    RETURN 0;
+
+-- Split by the '@' to extract the username and domain parts
+SET @usernamePartLen = @pos - 1; -- One character to the left = the length of the username (from beginning of str)
+SET @domainPartLen = LEN(@email) - @pos;
+-- The size of our entire string - the pos of '@' = the length of our domain portion
+
+-- Make sure we have minimum lengths
+IF @usernamePartLen &lt; 1 OR @domainPartLen &lt; 3
+    RETURN 0;
+
+-- Check for invalid characters
+IF CHARINDEX('`&amp;\:;,\&quot;-_&lt;&gt;[]()', @email) &gt; 0
+    RETURN 0;
+
+-- Make sure the username portion doesn't contain any '@'s
+IF CHARINDEX('@', SUBSTRING(@email, 0, @usernamePartLen)) &gt; 0
+    RETURN 0;
+
+-- It's valid so return true
+RETURN 1;
+
+END</code></pre></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="1397289087">Deliverable 11 (Business Logic Procedures)</h1><section><h2 id="1397289087#initialize-invoice" data-toc="initialize-invoice#Deliverable-11-Procedures.md-initialize-invoice">Initialize Invoice</h2><p id="1397289087#-ui9aa3_10697">This procedure takes the required information to create a new invoice.</p><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10698"><tr class="header-row" id="1397289087#-ui9aa3_10699"><th id="1397289087#-ui9aa3_10700"><p>Field</p></th><th id="1397289087#-ui9aa3_10701"><p>Description</p></th><th id="1397289087#-ui9aa3_10702"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10703"><td id="1397289087#-ui9aa3_10704"><p><span class="inline-code" id="1397289087#-ui9aa3_10705">customer_email</span></p></td><td id="1397289087#-ui9aa3_10706"><p>The email of the customer associated with</p></td><td id="1397289087#-ui9aa3_10707"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10708"><td id="1397289087#-ui9aa3_10709"><p><span class="inline-code" id="1397289087#-ui9aa3_10710">invoice_num</span></p></td><td id="1397289087#-ui9aa3_10711"><p>Override the automatically generated invoice number</p></td><td id="1397289087#-ui9aa3_10712"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10713"><td id="1397289087#-ui9aa3_10714"><p><span class="inline-code" id="1397289087#-ui9aa3_10715">due_date</span></p></td><td id="1397289087#-ui9aa3_10716"><p>The date the invoice is due (mutually exclusive with <span class="inline-code" id="1397289087#-ui9aa3_10717">due_days</span>)</p></td><td id="1397289087#-ui9aa3_10718"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10719"><td id="1397289087#-ui9aa3_10720"><p><span class="inline-code" id="1397289087#-ui9aa3_10721">due_days</span></p></td><td id="1397289087#-ui9aa3_10722"><p>How many days from the current date the invoice is due (mutually exclusive with <span class="inline-code" id="1397289087#-ui9aa3_10723">due_date</span>)</p></td><td id="1397289087#-ui9aa3_10724"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10725"><td id="1397289087#-ui9aa3_10726"><p><span class="inline-code" id="1397289087#-ui9aa3_10727">inserted_id</span></p></td><td id="1397289087#-ui9aa3_10728"><p>Output var which returns the ID of the newly inserted invoice</p></td><td id="1397289087#-ui9aa3_10729"><p>❌</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10730"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.InitializeInvoice_ProfG_FP(
+    @customer_email VARCHAR(320),
+    @invoice_num INT = NULL,
+    @description VARCHAR(1024) = NULL,
+    @due_date DATE = NULL,
+    @due_days INT = NULL, -- The amount of days (from today) which the invoice is due
+    @inserted_id INT OUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+    -- Step 1: Check that our customer exists
+    DECLARE @customerID INT;
+
+SELECT @customerID = id FROM S23916715.Customer_ProfG_FP WHERE email = @customer_email;
+
+IF @customerID IS NULL
+    BEGIN
+        PRINT CONCAT('Customer with email ', @customer_email, ' does not exist');
+        RETURN
+    END
+
+-- Step 2a: If the user provided an invoice number, check if an invoice already exists with this number
+IF @invoice_num IS NOT NULL
+    BEGIN
+        DECLARE @foundInvoiceNum INT;
+
+        SELECT @foundInvoiceNum = num FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+
+        IF @foundInvoiceNum IS NOT NULL
+            BEGIN
+                PRINT CONCAT('Invoice with the number ', @foundInvoiceNum, ' exists')
+                RETURN
+            END
+    END
+
+-- Step 2b: If the user did not provide an invoice number, try to increment it from our variables table
+DECLARE @numVar VARCHAR(128);
+
+SELECT @numVar = value FROM S23916715.Variables_ProfG_FP WHERE [key] = 'invoice_accumulator';
+
+IF @numVar IS NULL
+    BEGIN
+        -- We haven't started accumulating invoice numbers yet, so start from 1
+        INSERT INTO S23916715.Variables_ProfG_FP ([key], value) VALUES ('invoice_accumulator', '1');
+        SET @invoice_num = 1;
+    END
+ELSE
+    BEGIN
+        -- Convert the value to a INT
+        SET @invoice_num = TRY_CAST(@numVar AS INT) + 1
+        -- Now increment our accumulator in the database
+        UPDATE S23916715.Variables_ProfG_FP
+        SET value=TRY_CAST(@invoice_num AS VARCHAR)
+        WHERE [key] = 'invoice_accumulator';
+    END
+
+-- Step 3: We can't have both the due_date and the due_days
+IF @due_date IS NOT NULL AND @due_days IS NOT NULL
+    BEGIN
+        PRINT 'You can''t provide both due_date and due_days'
+        RETURN
+    END
+
+-- Step 4: Insert the new invoice
+BEGIN TRY
+    IF @due_days IS NOT NULL OR @due_date IS NOT NULL
+        BEGIN
+            DECLARE @due DATE;
+            IF @due_date IS NOT NULL
+                -- If we have the due_date, just insert that,
+                SET @due = @due_date
+            ELSE
+                -- but if we have the due_days, set `due` = today's date + the due_days
+                SET @due = DATEADD(DAY, @due_days, GETDATE())
+
+            INSERT INTO S23916715.Invoice_ProfG_FP (num, customer, description, due)
+            VALUES (@invoice_num, @customerID, @description, @due)
+        END
+    ELSE
+        -- We we didn't provide either due_days or due_date, don't insert it (it'll default to today + 30 days)
+        BEGIN
+            INSERT INTO S23916715.Invoice_ProfG_FP
+                (num, customer, description)
+            VALUES (@invoice_num, @customerID, @description);
+        END
+
+    -- Set our output variable to the ID of the last inserted ID (scoped)
+    SET @inserted_id = SCOPE_IDENTITY();
+END TRY
+BEGIN CATCH
+    PRINT 'Something went wrong when initializing new invoice'
+    RETURN
+END CATCH
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="1397289087#add-line-to-invoice" data-toc="add-line-to-invoice#Deliverable-11-Procedures.md-add-line-to-invoice">Add Line to Invoice</h2><p id="1397289087#-ui9aa3_10731">This procedure adds a new product line to an invoice.</p><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10732"><tr class="header-row" id="1397289087#-ui9aa3_10733"><th id="1397289087#-ui9aa3_10734"><p>Field</p></th><th id="1397289087#-ui9aa3_10735"><p>Description</p></th><th id="1397289087#-ui9aa3_10736"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10737"><td id="1397289087#-ui9aa3_10738"><p><span class="inline-code" id="1397289087#-ui9aa3_10739">invoice_num</span></p></td><td id="1397289087#-ui9aa3_10740"><p>The number of the invoice to add the line to</p></td><td id="1397289087#-ui9aa3_10741"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10742"><td id="1397289087#-ui9aa3_10743"><p><span class="inline-code" id="1397289087#-ui9aa3_10744">product_name</span></p></td><td id="1397289087#-ui9aa3_10745"><p>The name of the product to add to the invoice (requires <span class="inline-code" id="1397289087#-ui9aa3_10746">product_sku</span>, mutually exclusive with <span class="inline-code" id="1397289087#-ui9aa3_10747">product_id</span>)</p></td><td id="1397289087#-ui9aa3_10748"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10749"><td id="1397289087#-ui9aa3_10750"><p><span class="inline-code" id="1397289087#-ui9aa3_10751">product_sku</span></p></td><td id="1397289087#-ui9aa3_10752"><p>The sku of the product to add to the invoice (requires <span class="inline-code" id="1397289087#-ui9aa3_10753">product_name</span>, mutually exclusive with <span class="inline-code" id="1397289087#-ui9aa3_10754">product_id</span>)</p></td><td id="1397289087#-ui9aa3_10755"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10756"><td id="1397289087#-ui9aa3_10757"><p><span class="inline-code" id="1397289087#-ui9aa3_10758">product_id</span></p></td><td id="1397289087#-ui9aa3_10759"><p>The id of the product to add to the invoice (mutually exclusive with <span class="inline-code" id="1397289087#-ui9aa3_10760">product_name</span> &amp; <span class="inline-code" id="1397289087#-ui9aa3_10761">product_sku</span>)</p></td><td id="1397289087#-ui9aa3_10762"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10763"><td id="1397289087#-ui9aa3_10764"><p><span class="inline-code" id="1397289087#-ui9aa3_10765">price_id</span></p></td><td id="1397289087#-ui9aa3_10766"><p>The id of the price to add to the line</p></td><td id="1397289087#-ui9aa3_10767"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10768"><td id="1397289087#-ui9aa3_10769"><p><span class="inline-code" id="1397289087#-ui9aa3_10770">quantity</span></p></td><td id="1397289087#-ui9aa3_10771"><p>The quantity of the product to add to the invoice</p></td><td id="1397289087#-ui9aa3_10772"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10773"><td id="1397289087#-ui9aa3_10774"><p><span class="inline-code" id="1397289087#-ui9aa3_10775">description</span></p></td><td id="1397289087#-ui9aa3_10776"><p>Any additional information associated with the line</p></td><td id="1397289087#-ui9aa3_10777"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10778"><td id="1397289087#-ui9aa3_10779"><p><span class="inline-code" id="1397289087#-ui9aa3_10780">inserted_id</span></p></td><td id="1397289087#-ui9aa3_10781"><p>Output var which returns the id of the newly inserted invoice line</p></td><td id="1397289087#-ui9aa3_10782"><p>❌</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10783"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.AddNewLineToInvoice_ProfG_FP(
+    @invoice_num INT,
+    @product_name VARCHAR(128) = NULL,
+    @product_sku VARCHAR(128) = NULL,
+    @product_id INT = NULL,
+    @price_id INT,
+    @quantity INT,
+    @description VARCHAR(1024) = NULL,
+    @inserted_id INT OUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- Step 1: Make sure the invoice exists
+DECLARE @invoice_id INT;
+
+SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+IF @invoice_id IS NULL
+    BEGIN
+        PRINT CONCAT('Invoice with the number ', @invoice_num, ' doesn''t exist')
+        RETURN
+    END
+
+-- Step 2: Check if we're going to find the product by id or name&amp;sku
+-- We can't have both id and product&amp;sku
+IF @product_id IS NOT NULL AND @product_sku IS NOT NULL AND @product_name IS NOT NULL
+    BEGIN
+        PRINT 'You can''t provide both product ID and product name&amp;sku'
+        RETURN
+    END
+    -- We have to have at least one of the two
+ELSE
+    IF @product_id IS NULL AND (@product_name IS NULL OR @product_sku IS NULL)
+        BEGIN
+            PRINT 'You must provide at least product ID or product name&amp;sku'
+            RETURN
+        END
+
+-- Now we can try to find the product
+SELECT @product_id = id
+FROM S23916715.Product_ProfG_FP
+WHERE (@product_id IS NOT NULL AND id = @product_id)
+   OR (@product_name IS NOT NULL AND @product_sku IS NOT NULL AND name = @product_name AND sku = @product_sku);
+
+IF @@ROWCOUNT = 0
+    BEGIN
+        PRINT 'Product doesn''t exist'
+        RETURN
+    END
+
+-- We can try to find the price
+DECLARE @pricesProductId INT
+
+SELECT @pricesProductId = product FROM S23916715.Price_ProfG_FP WHERE id = @price_id;
+
+IF @pricesProductId IS NULL
+    BEGIN
+        PRINT 'The provided price does not exist'
+        RETURN
+    END
+
+-- The price must belong to the provided product
+IF @pricesProductId != @product_id
+    BEGIN
+        PRINT 'The provided price does not belong to the provided product'
+        RETURN
+    END
+
+-- Validate our provided quantity
+IF @quantity &lt;= 0
+    BEGIN
+        PRINT 'Quantity must be &gt; 0'
+        RETURN
+    END
+
+-- Finally, insert our new invoice line
+BEGIN TRY
+    INSERT INTO S23916715.InvoiceLine_ProfG_FP (invoice, product, price, quantity, description)
+    VALUES (@invoice_id, @product_id, @price_id, @quantity, @description);
+
+    -- Set our output var to the new ID
+    SET @inserted_id = SCOPE_IDENTITY();
+
+    PRINT CONCAT('Successfully added line to in invoice num ', TRY_CAST(@invoice_num AS VARCHAR))
+END TRY
+BEGIN CATCH
+    PRINT 'Something went wrong when inserting new line into invoice';
+    RETURN
+END CATCH
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="1397289087#add-payment-to-invoice" data-toc="add-payment-to-invoice#Deliverable-11-Procedures.md-add-payment-to-invoice">Add Payment to Invoice</h2><p id="1397289087#-ui9aa3_10784">Log a payment for a given invoice. Automatically updates the invoice's status if necessary.</p><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10785"><tr class="header-row" id="1397289087#-ui9aa3_10786"><th id="1397289087#-ui9aa3_10787"><p>Field</p></th><th id="1397289087#-ui9aa3_10788"><p>Description</p></th><th id="1397289087#-ui9aa3_10789"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10790"><td id="1397289087#-ui9aa3_10791"><p><span class="inline-code" id="1397289087#-ui9aa3_10792">invoice_num</span></p></td><td id="1397289087#-ui9aa3_10793"><p>The number of the invoice to log the payment to</p></td><td id="1397289087#-ui9aa3_10794"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10795"><td id="1397289087#-ui9aa3_10796"><p><span class="inline-code" id="1397289087#-ui9aa3_10797">amount</span></p></td><td id="1397289087#-ui9aa3_10798"><p>The amount (in dollars and cents) paid</p></td><td id="1397289087#-ui9aa3_10799"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10800"><td id="1397289087#-ui9aa3_10801"><p><span class="inline-code" id="1397289087#-ui9aa3_10802">method</span></p></td><td id="1397289087#-ui9aa3_10803"><p>The method of payment (check, cash, crypto, etc.)</p></td><td id="1397289087#-ui9aa3_10804"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10805"><td id="1397289087#-ui9aa3_10806"><p><span class="inline-code" id="1397289087#-ui9aa3_10807">check_num</span></p></td><td id="1397289087#-ui9aa3_10808"><p>The number written on the check (only applicable if the <span class="inline-code" id="1397289087#-ui9aa3_10809">method</span> is &quot;check&quot;)</p></td><td id="1397289087#-ui9aa3_10810"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10811"><td id="1397289087#-ui9aa3_10812"><p><span class="inline-code" id="1397289087#-ui9aa3_10813">payment_account</span></p></td><td id="1397289087#-ui9aa3_10814"><p>The account the payment would be paid out to</p></td><td id="1397289087#-ui9aa3_10815"><p>✓</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10816"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.AddPaymentToInvoice_ProfG_FP(
+    @invoice_num INT,
+    @amount FLOAT,
+    @method VARCHAR(20),
+    @check_num VARCHAR(32) = NULL,
+    @payment_account INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- Step 1: Make sure our invoice exists
+DECLARE @invoice_id INT;
+
+SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @invoice_num;
+
+IF @invoice_id IS NULL
+    BEGIN
+        PRINT CONCAT('Invoice with num ', @invoice_num, ' doesn''t exist')
+        RETURN
+    END
+
+-- Step 2: Validate the payment method the user provided
+DECLARE @paymentMethodId INT;
+SET @paymentMethodId = S23916715.GetPaymentMethodId_ProfF_FP(@method);
+
+IF @paymentMethodId IS NULL
+    BEGIN
+        PRINT CONCAT(@method, ' is an invalid payment method');
+        RETURN
+    END
+
+-- Step 3: If the payment method isn't check but we provided a check number, fail
+IF @method != 'CHECK' AND @check_num IS NOT NULL
+    BEGIN
+        PRINT 'Check number can only be supplied when payment method is check'
+        RETURN
+    END
+
+-- Step 4: Make sure the payment account id is valid
+DECLARE @findAccountCount INT;
+
+SELECT @findAccountCount = COUNT(*)
+FROM S23916715.PaymentAccount_ProfG_FP
+WHERE id = @payment_account AND deleted = 0;
+IF @findAccountCount IS NULL OR @findAccountCount = 0
+    BEGIN
+        PRINT 'Payment account doesn''t exist'
+        RETURN
+    END
+
+-- Step 5: Start a transaction for creating the payment record
+-- The reason we need to do this is because if the payment record fully pays off the invoice,
+-- we need to modify the invoice object as well, which could cause problems if something goes wrong
+-- mid-way trough
+BEGIN TRANSACTION [Trans]
+    BEGIN TRY
+        -- Step 5a: Create the payment record
+        INSERT INTO S23916715.InvoicePaymentRecord_ProfG_FP (invoice, amount, method, check_num, payment_account)
+        VALUES (@invoice_id, TRY_CAST(@amount * 100 AS INT), @paymentMethodId,
+                @check_num, @payment_account)
+
+        DECLARE @remaining FLOAT;
+
+        SET @remaining = S23916715.CalculateRemainingBalance_ProfF_FP(@invoice_num)
+
+        -- Step 5b: If the invoice is completely paid off, set the status to paid and set the `paid` timestamp
+        IF @remaining &lt;= 0
+            BEGIN
+                UPDATE S23916715.Invoice_ProfG_FP
+                SET status = S23916715.GetInvoiceStatusId_ProfF_FP('PAID'),
+                    paid=SYSDATETIME()
+                WHERE num = @invoice_num;
+            END
+
+        -- Step 5c: Add the payment total to our account
+        UPDATE S23916715.PaymentAccount_ProfG_FP
+        SET balance = balance + TRY_CAST(@amount * 100 AS INT)
+        WHERE id = @payment_account;
+
+        COMMIT TRANSACTION [Trans]
+    END TRY
+    BEGIN CATCH
+        PRINT 'Something went wrong when creating payment record'
+        ROLLBACK TRANSACTION [Trans]
+        RETURN
+    END CATCH
+
+    SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="1397289087#change-status-on-several-invoices" data-toc="change-status-on-several-invoices#Deliverable-11-Procedures.md-change-status-on-several-invoices">Change Status on Several Invoices</h2><p id="1397289087#-ui9aa3_10817">Given several <span class="inline-code" id="1397289087#-ui9aa3_10818">invoice_nums</span> (in CSV format), set the <span class="inline-code" id="1397289087#-ui9aa3_10819">status</span> on each invoice to the given <span class="inline-code" id="1397289087#-ui9aa3_10820">@status</span></p><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10821"><tr class="header-row" id="1397289087#-ui9aa3_10822"><th id="1397289087#-ui9aa3_10823"><p>Field</p></th><th id="1397289087#-ui9aa3_10824"><p>Description</p></th><th id="1397289087#-ui9aa3_10825"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10826"><td id="1397289087#-ui9aa3_10827"><p><span class="inline-code" id="1397289087#-ui9aa3_10828">status</span></p></td><td id="1397289087#-ui9aa3_10829"><p>The status to set on each invoice</p></td><td id="1397289087#-ui9aa3_10830"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10831"><td id="1397289087#-ui9aa3_10832"><p><span class="inline-code" id="1397289087#-ui9aa3_10833">invoice_nums</span></p></td><td id="1397289087#-ui9aa3_10834"><p>The invoice numbers to change the status of (in CSV format)</p></td><td id="1397289087#-ui9aa3_10835"><p>✓</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10836"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.ChangeStatusOnSeveralInvoices_ProfG_FP(
+    @status VARCHAR(128),
+    @invoice_nums VARCHAR(1024) -- a csv of the invoice numbers
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+DECLARE @status_id INT;
+
+-- Get (and validate) our status
+SET @status_id = S23916715.GetInvoiceStatusId_ProfF_FP(@status);
+
+IF @status_id IS NULL
+    BEGIN
+        PRINT CONCAT(@status, ' is an invalid status')
+        RETURN
+    END
+
+-- Split the csv argument into a table for looping
+CREATE TABLE #tableOfIds
+(
+    id INT
+);
+
+INSERT INTO #tableOfIds (id)
+SELECT value
+FROM STRING_SPLIT(@invoice_nums, ',');
+
+-- Loop through each value in our temporary table and find the invoice, then try to set its status
+DECLARE @id INT;
+
+BEGIN TRANSACTION [UpdateTransaction]
+
+    BEGIN TRY
+        WHILE EXISTS (SELECT * FROM #tableOfIds)
+            BEGIN
+                -- Pick an invoice num from the top of our temp table
+                SELECT TOP 1 @id = id FROM #tableOfIds;
+                -- Delete that value so we don't pick it next iteration
+                DELETE FROM #tableOfIds WHERE id = @id;
+
+                -- Make sure the invoice exists
+                DECLARE @invoice_id INT;
+
+                SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @id;
+
+                IF @invoice_id IS NULL
+                    BEGIN
+                        PRINT CONCAT('Invoice with num ', @id, ' doesn''t exist')
+                        RETURN
+                    END
+
+                -- Now that we know it exists, update its status
+                UPDATE S23916715.Invoice_ProfG_FP SET status=@status_id WHERE num = @id;
+
+            END
+            
+        -- Remove our temporary table
+        DROP TABLE #tableOfIds;
+    END TRY
+    BEGIN CATCH
+        PRINT 'Something went wrong when updating invoice'
+        ROLLBACK TRANSACTION [UpdateTransaction]
+        RETURN
+    END CATCH
+COMMIT TRANSACTION [UpdateTransaction]
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="1397289087#create-new-customer" data-toc="create-new-customer#Deliverable-11-Procedures.md-create-new-customer">Create New Customer</h2><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10837"><tr class="header-row" id="1397289087#-ui9aa3_10838"><th id="1397289087#-ui9aa3_10839"><p>Field</p></th><th id="1397289087#-ui9aa3_10840"><p>Description</p></th><th id="1397289087#-ui9aa3_10841"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10842"><td id="1397289087#-ui9aa3_10843"><p><span class="inline-code" id="1397289087#-ui9aa3_10844">email</span></p></td><td id="1397289087#-ui9aa3_10845"><p>The customer's email address</p></td><td id="1397289087#-ui9aa3_10846"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10847"><td id="1397289087#-ui9aa3_10848"><p><span class="inline-code" id="1397289087#-ui9aa3_10849">phone_num</span></p></td><td id="1397289087#-ui9aa3_10850"><p>The customer's phone number</p></td><td id="1397289087#-ui9aa3_10851"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10852"><td id="1397289087#-ui9aa3_10853"><p><span class="inline-code" id="1397289087#-ui9aa3_10854">first_name</span></p></td><td id="1397289087#-ui9aa3_10855"><p>The customer's first name</p></td><td id="1397289087#-ui9aa3_10856"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10857"><td id="1397289087#-ui9aa3_10858"><p><span class="inline-code" id="1397289087#-ui9aa3_10859">last_name</span></p></td><td id="1397289087#-ui9aa3_10860"><p>The customer's last name</p></td><td id="1397289087#-ui9aa3_10861"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10862"><td id="1397289087#-ui9aa3_10863"><p><span class="inline-code" id="1397289087#-ui9aa3_10864">address</span></p></td><td id="1397289087#-ui9aa3_10865"><p>Address line one</p></td><td id="1397289087#-ui9aa3_10866"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10867"><td id="1397289087#-ui9aa3_10868"><p><span class="inline-code" id="1397289087#-ui9aa3_10869">address_line_two</span></p></td><td id="1397289087#-ui9aa3_10870"><p>Address line two</p></td><td id="1397289087#-ui9aa3_10871"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10872"><td id="1397289087#-ui9aa3_10873"><p><span class="inline-code" id="1397289087#-ui9aa3_10874">city</span></p></td><td id="1397289087#-ui9aa3_10875"><p>City</p></td><td id="1397289087#-ui9aa3_10876"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10877"><td id="1397289087#-ui9aa3_10878"><p><span class="inline-code" id="1397289087#-ui9aa3_10879">state</span></p></td><td id="1397289087#-ui9aa3_10880"><p>State (2 characters)</p></td><td id="1397289087#-ui9aa3_10881"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10882"><td id="1397289087#-ui9aa3_10883"><p><span class="inline-code" id="1397289087#-ui9aa3_10884">zip_code</span></p></td><td id="1397289087#-ui9aa3_10885"><p>Zip code</p></td><td id="1397289087#-ui9aa3_10886"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10887"><td id="1397289087#-ui9aa3_10888"><p><span class="inline-code" id="1397289087#-ui9aa3_10889">inserted_id</span></p></td><td id="1397289087#-ui9aa3_10890"><p>Output parameter for inserted ID</p></td><td id="1397289087#-ui9aa3_10891"><p>❌</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10892"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.CreateNewCustomer_ProfG_FP(
+    @email VARCHAR(320),
+    @phone_num VARCHAR(12),
+    @first_name VARCHAR(128),
+    @last_name VARCHAR(128),
+    @address VARCHAR(128),
+    @address_line_two VARCHAR(128) = NULL,
+    @city VARCHAR(128),
+    @state CHAR(2),
+    @zip_code VARCHAR(16),
+    @inserted_id INT OUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- Step 1: Make sure we don't already have this customer (the email should be unique)
+DECLARE @findCustomerCount INT;
+
+SELECT @findCustomerCount = COUNT(*) FROM S23916715.Customer_ProfG_FP WHERE email = @email;
+IF @findCustomerCount IS NOT NULL AND @findCustomerCount != 0
+    BEGIN
+        PRINT CONCAT('Customer with email ', @email, ' already exists!');
+        RETURN
+    END
+
+-- Step 2: Check if the given email is valid
+DECLARE @isValid BIT;
+SET @isValid = S23916715.ValidateEmail_ProfG_FP(@email);
+
+IF @isValid = 0
+    BEGIN
+        PRINT 'Please provide a valid email address'
+        RETURN
+    END
+
+-- Step 3: Make sure all of the provided fields aren't null
+-- Note: We don't need to check the email since our validate function does it
+IF @phone_num IS NULL OR
+   @first_name IS NULL OR
+   @last_name IS NULL OR
+   @address IS NULL OR
+   @city IS NULL OR
+   @state IS NULL OR
+   @zip_code IS NULL
+    BEGIN
+        PRINT 'Please provide all required fields'
+        RETURN
+    END
+
+
+-- At this point we can insert our customer into our database
+BEGIN TRY
+    INSERT INTO S23916715.Customer_ProfG_FP
+    (email,
+     phone_num,
+     first_name,
+     last_name,
+     address,
+     address_line_two,
+     city, state, zip_code)
+    VALUES (@email,
+            @phone_num,
+            @first_name,
+            @last_name,
+            @address,
+            @address_line_two,
+            @city, @state, @zip_code)
+
+    -- Set our output variable to the ID of the last inserted ID (scoped)
+    SET @inserted_id = SCOPE_IDENTITY();
+
+    PRINT 'Successfully added new customer'
+END TRY
+BEGIN CATCH
+    PRINT 'Something went wrong when creating new customer';
+    RETURN
+END CATCH
+
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section><section><h2 id="1397289087#create-new-product" data-toc="create-new-product#Deliverable-11-Procedures.md-create-new-product">Create New Product</h2><div class="table-wrapper detached"><table id="1397289087#-ui9aa3_10893"><tr class="header-row" id="1397289087#-ui9aa3_10894"><th id="1397289087#-ui9aa3_10895"><p>Field</p></th><th id="1397289087#-ui9aa3_10896"><p>Description</p></th><th id="1397289087#-ui9aa3_10897"><p>Required</p></th></tr><tr class="" id="1397289087#-ui9aa3_10898"><td id="1397289087#-ui9aa3_10899"><p><span class="inline-code" id="1397289087#-ui9aa3_10900">name</span></p></td><td id="1397289087#-ui9aa3_10901"></td><td id="1397289087#-ui9aa3_10902"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10903"><td id="1397289087#-ui9aa3_10904"><p><span class="inline-code" id="1397289087#-ui9aa3_10905">description</span></p></td><td id="1397289087#-ui9aa3_10906"><p>The default description of the product</p></td><td id="1397289087#-ui9aa3_10907"><p>❌</p></td></tr><tr class="" id="1397289087#-ui9aa3_10908"><td id="1397289087#-ui9aa3_10909"><p><span class="inline-code" id="1397289087#-ui9aa3_10910">sku</span></p></td><td id="1397289087#-ui9aa3_10911"><p>The sku of the product</p></td><td id="1397289087#-ui9aa3_10912"><p>✓</p></td></tr><tr class="" id="1397289087#-ui9aa3_10913"><td id="1397289087#-ui9aa3_10914"><p><span class="inline-code" id="1397289087#-ui9aa3_10915">inserted_id</span></p></td><td id="1397289087#-ui9aa3_10916"><p>Output parameter for inserted ID</p></td><td id="1397289087#-ui9aa3_10917"><p>✓</p></td></tr></table></div><div class="code-block detached" id="1397289087#-ui9aa3_10918"><pre><code class="language-sql">CREATE OR ALTER PROCEDURE S23916715.CreateNewProduct_ProfG_FP(
+    @name VARCHAR(128),
+    @description VARCHAR(1204) = NULL,
+    @sku VARCHAR(128),
+    @inserted_id INT OUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+-- Step 1: Make sure we don't already have a product with this name or sku
+DECLARE @findProductCount INT;
+
+-- The name and the sku field don't need to be unique on their own, but the combination needs to be
+SELECT @findProductCount = COUNT(*) FROM S23916715.Product_ProfG_FP WHERE name = @name AND sku = @sku;
+IF @findProductCount IS NOT NULL AND @findProductCount != 0
+    BEGIN
+        PRINT CONCAT('Product with the name ', @name, ' and sku ', @sku, ' already exist');
+        RETURN
+    END
+
+-- Step 2: Make sure we have all of the required fields
+IF @name IS NULL OR
+   @sku IS NULL
+    BEGIN
+        PRINT 'Please provide all required fields'
+        RETURN
+    END
+
+BEGIN TRY
+    INSERT INTO S23916715.Product_ProfG_FP
+        (name, description, sku)
+    VALUES (@name,
+            @description,
+            @sku)
+
+    -- Set our output variable to the ID of the last inserted ID (scoped)
+    SET @inserted_id = SCOPE_IDENTITY();
+
+    PRINT 'Successfully added new product'
+
+END TRY
+BEGIN CATCH
+    PRINT 'Something went wrong when creating new product';
+    RETURN
+END CATCH
+
+SET NOCOUNT OFF
+
+END</code></pre></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1628700903">Deliverable 12 (Triggers)</h1><section><h2 id="-1628700903#override-customer-delete" data-toc="override-customer-delete#Deliverable-12-Triggers.md-override-customer-delete">Override Customer Delete</h2><p id="-1628700903#i9mw09d_1342">According to the companies data retention policy, no data can be deleted. To solve this, the <span class="inline-code" id="-1628700903#i9mw09d_1343">DELETE</span> operation is overwritten and replace with setting the <span class="inline-code" id="-1628700903#i9mw09d_1344">deleted</span> column to true.</p><div class="code-block detached" id="-1628700903#i9mw09d_1345"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.DeleteCustomer_Trigger_ProfG_FP
+    ON S23916715.Customer_ProfG_FP
+    INSTEAD OF DELETE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+UPDATE S23916715.Customer_ProfG_FP
+SET deleted = 1
+FROM S23916715.Customer_ProfG_FP
+         INNER JOIN deleted ON S23916715.Customer_ProfG_FP.id = deleted.id;
+
+SET NOCOUNT OFF;
+
+END;</code></pre></div></section><section><h2 id="-1628700903#override-invoice-delete" data-toc="override-invoice-delete#Deliverable-12-Triggers.md-override-invoice-delete">Override Invoice Delete</h2><p id="-1628700903#i9mw09d_1346">According to the companies data retention policy, no data can be deleted. To solve this, the <span class="inline-code" id="-1628700903#i9mw09d_1347">DELETE</span> operation is overwritten and replace with setting the <span class="inline-code" id="-1628700903#i9mw09d_1348">deleted</span> column to true.</p><div class="code-block detached" id="-1628700903#i9mw09d_1349"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.OverrideDeleteInvoice_Trigger_ProfG_FP
+    ON S23916715.Invoice_ProfG_FP
+    INSTEAD OF DELETE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+UPDATE S23916715.Invoice_ProfG_FP
+SET deleted = 1, updated=SYSDATETIME()
+FROM S23916715.Invoice_ProfG_FP
+         INNER JOIN deleted ON S23916715.Invoice_ProfG_FP.id = deleted.id;
+
+SET NOCOUNT OFF;
+
+END;</code></pre></div></section><section><h2 id="-1628700903#insert-update-delete-trigger-for-invoice" data-toc="insert-update-delete-trigger-for-invoice#Deliverable-12-Triggers.md-insert-update-delete-trigger-for-invoice">INSERT/UPDATE/DELETE Trigger for Invoice</h2><p id="-1628700903#i9mw09d_1350">This trigger runs on all <span class="inline-code" id="-1628700903#i9mw09d_1351">INSERT</span>, <span class="inline-code" id="-1628700903#i9mw09d_1352">UPDATE</span>, and <span class="inline-code" id="-1628700903#i9mw09d_1353">DELETE</span> operations, but has different behavior for each event. On insert, the associated customer's invoice count is incremented. On update, the invoice's update field is set to the current timestamp On delete, the invoice's deleted field is set to true and the update field is set to the current timestamp</p><div class="code-block detached" id="-1628700903#i9mw09d_1354"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.MultiTriggerForInvoice_ProfG_FP
+    ON S23916715.Invoice_ProfG_FP
+    AFTER INSERT, UPDATE, DELETE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+DECLARE @eventType VARCHAR(10);
+
+-- Grab the event type so we can run some code conditionally
+SET @eventType = CASE
+                     WHEN EXISTS (SELECT * FROM INSERTED) THEN 'INSERT'
+                     WHEN EXISTS (SELECT * FROM DELETED) THEN 'DELETE'
+                     ELSE 'UPDATE'
+    END;
+
+IF @eventType = 'INSERT'
+    BEGIN
+        -- When we insert new records, find the customer and increment their invoice count
+        DECLARE @insertedRows INT = @@ROWCOUNT;
+
+        IF @insertedRows &gt; 0
+            BEGIN
+                UPDATE S23916715.Customer_ProfG_FP
+                SET invoice_count = invoice_count + 1
+                FROM S23916715.Invoice_ProfG_FP AS inv
+                         INNER JOIN S23916715.Customer_ProfG_FP AS cust ON inv.customer = cust.id;
+            END
+    END
+
+ELSE
+    IF @eventType = 'UPDATE'
+        -- When we update an invoice, set its `updated` field
+        BEGIN
+            UPDATE S23916715.Invoice_ProfG_FP
+            SET updated = SYSDATETIME()
+            FROM S23916715.Invoice_ProfG_FP
+                     INNER JOIN inserted ON S23916715.Invoice_ProfG_FP.id = inserted.id;
+        END
+
+    ELSE
+        IF @eventType = 'DELETE'
+            -- When we delete an invoice, instead mark it as deleted (and set its updated field)
+            BEGIN
+                UPDATE S23916715.Invoice_ProfG_FP
+                SET deleted = 1 -- Set a flag indicating that the file was marked 'deleted'
+                FROM deleted AS d
+                WHERE S23916715.Invoice_ProfG_FP.id = d.id;
+            END
+
+SET NOCOUNT OFF;
+
+END</code></pre></div></section><section><h2 id="-1628700903#customer-update" data-toc="customer-update#Deliverable-12-Triggers.md-customer-update">Customer Update</h2><p id="-1628700903#i9mw09d_1355">On update, the customer's updated field is set to the current timestamp</p><div class="code-block detached" id="-1628700903#i9mw09d_1356"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.CustomerUpdateTrigger_ProfG_FP
+    ON S23916715.Customer_ProfG_FP
+    AFTER UPDATE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- When we update a customer, set its `updated` field
+UPDATE S23916715.Customer_ProfG_FP
+SET updated = SYSDATETIME()
+FROM S23916715.Customer_ProfG_FP
+         INNER JOIN inserted ON S23916715.Customer_ProfG_FP.id = inserted.id;
+
+SET NOCOUNT OFF;
+
+END</code></pre></div></section><section><h2 id="-1628700903#insert-trigger-for-invoice-line" data-toc="insert-trigger-for-invoice-line#Deliverable-12-Triggers.md-insert-trigger-for-invoice-line">Insert Trigger for Invoice Line</h2><p id="-1628700903#i9mw09d_1357">When adding a new line to an invoice, increment that invoice's line count</p><div class="code-block detached" id="-1628700903#i9mw09d_1358"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.InsertTriggerForInvoiceLine_ProfG_FP
+    ON S23916715.InvoiceLine_ProfG_FP
+    AFTER INSERT
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- When we insert a new invoice line, update the invoice's line count
+
+DECLARE @insertedRows INT = @@ROWCOUNT;
+
+IF @insertedRows &gt; 0
+    BEGIN
+        UPDATE S23916715.Invoice_ProfG_FP
+        SET lines = lines + 1
+        FROM S23916715.Invoice_ProfG_FP
+                 INNER JOIN inserted ON S23916715.Invoice_ProfG_FP.id = inserted.invoice
+        WHERE S23916715.Invoice_ProfG_FP.id = inserted.id;
+    END
+
+SET NOCOUNT OFF;
+
+END;</code></pre></div></section><section><h2 id="-1628700903#delete-payment-account" data-toc="delete-payment-account#Deliverable-12-Triggers.md-delete-payment-account">Delete Payment Account</h2><p id="-1628700903#i9mw09d_1359">When the payment account is deleted, instead mark it as deleted</p><div class="code-block detached" id="-1628700903#i9mw09d_1360"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.OverrideDeletePaymentAccount_Trigger_ProfG_FP
+    ON S23916715.PaymentAccount_ProfG_FP
+    INSTEAD OF DELETE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+UPDATE S23916715.PaymentAccount_ProfG_FP
+SET deleted = 1
+FROM S23916715.PaymentAccount_ProfG_FP
+         INNER JOIN deleted ON S23916715.PaymentAccount_ProfG_FP.id = deleted.id;
+
+SET NOCOUNT OFF;
+
+END;</code></pre></div></section><section><h2 id="-1628700903#insert-invoice-line" data-toc="insert-invoice-line#Deliverable-12-Triggers.md-insert-invoice-line">Insert Invoice Line</h2><p id="-1628700903#i9mw09d_1361">When inserting an invoice line, update its invoice's line count</p><div class="code-block detached" id="-1628700903#i9mw09d_1362"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.InsertTriggerForInvoiceLine_ProfG_FP
+    ON S23916715.InvoiceLine_ProfG_FP
+    AFTER INSERT
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- When we insert a new invoice line, update the invoice's line count
+
+DECLARE @insertedRows INT = @@ROWCOUNT;
+
+IF @insertedRows &gt; 0
+    BEGIN
+        UPDATE S23916715.Invoice_ProfG_FP
+        SET lines = lines + 1
+        FROM S23916715.Invoice_ProfG_FP
+                 INNER JOIN inserted ON S23916715.Invoice_ProfG_FP.id = inserted.invoice
+        WHERE S23916715.Invoice_ProfG_FP.id = inserted.id;
+    END
+
+SET NOCOUNT OFF;
+
+END;</code></pre></div></section><section><h2 id="-1628700903#update-invoice-payment-record" data-toc="update-invoice-payment-record#Deliverable-12-Triggers.md-update-invoice-payment-record">Update Invoice Payment Record</h2><p id="-1628700903#i9mw09d_1363">When updating an invoice payment record, we need to make sure that the balance on the associated payment account matches. To solve this, after updating a payment record, we subtract the original value from the account and then add the new value</p><div class="code-block detached" id="-1628700903#i9mw09d_1364"><pre><code class="language-sql">CREATE OR ALTER TRIGGER S23916715.UpdateTriggerForInvoicePaymentRecord_ProfG_FP
+    ON S23916715.InvoicePaymentRecord_ProfG_FP
+    AFTER UPDATE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- We don't need to use a transactions because triggers are already run in the context of a transaction
+-- When we update a invoice payment record, we need to correct our total balance in our payment account
+BEGIN TRY
+    -- Subtract the old amount
+    UPDATE S23916715.PaymentAccount_ProfG_FP
+    SET balance = balance - (SELECT amount FROM deleted)
+    WHERE id = (SELECT payment_account FROM deleted);
+
+    -- Add the new amount
+    UPDATE S23916715.PaymentAccount_ProfG_FP
+    SET balance = balance + (SELECT amount FROM inserted)
+    WHERE id = (SELECT payment_account FROM inserted);
+
+END TRY
+BEGIN CATCH
+    PRINT 'Something went wrong when updating payment account'
+    RETURN
+END CATCH
+
+SET NOCOUNT OFF;
+
+END</code></pre></div></section></article></div></section></div></body></html>

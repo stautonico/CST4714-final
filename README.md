@@ -77,16 +77,7 @@
 
 ## Notes
 
-- Mask the check numbers in the invoice payment record
-- Implement constraints to validate that a given enum value (like invoice status) is only one of the allowed values
-- Make table for invoice status instead of hardcoding varchar
-- Add more invoice statuses (overpaid, etc)
-- In proposal, note how all prices are stored in ints then converted to float
-- Draw ERD (after everything is done)
-- Think of another table to make
-- Write the last few triggers
 - For Q7, use profiling to identify slow or redundant queries, and optimize/improve them.
-- Mark customers (and all of their invoices) as deleted (maybe use trigger)
 
 General idea: Invoicing database
 
@@ -123,5 +114,3 @@ explain contribution to the business.
 describe 15 scripts.
 idntify and describe business/rules and processes that would be automated.
 systems become slow when things are running, identify and resolve.
-
-        At least two (1) of the trigger must be for delete
