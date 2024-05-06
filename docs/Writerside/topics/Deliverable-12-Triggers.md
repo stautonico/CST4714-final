@@ -29,7 +29,7 @@ According to the companies data retention policy, no data can be deleted.
 To solve this, the `DELETE` operation is overwritten and replace with setting the `deleted` column to true.
 
 <code-block lang="sql">
-CREATE OR ALTER TRIGGER S23916715.UpdateInvoices_Trigger_ProfG_FP
+CREATE OR ALTER TRIGGER S23916715.OverrideDeleteInvoice_Trigger_ProfG_FP
     ON S23916715.Invoice_ProfG_FP
     INSTEAD OF DELETE
     AS
@@ -42,7 +42,6 @@ BEGIN
              INNER JOIN deleted ON S23916715.Invoice_ProfG_FP.id = deleted.id;
 
     SET NOCOUNT OFF;
-
 END;
 </code-block>
 
@@ -105,6 +104,7 @@ BEGIN
                 END
 
     SET NOCOUNT OFF;
+
 END
 </code-block>
 
@@ -125,6 +125,126 @@ BEGIN
     SET updated = SYSDATETIME()
     FROM S23916715.Customer_ProfG_FP
              INNER JOIN inserted ON S23916715.Customer_ProfG_FP.id = inserted.id;
+
+    SET NOCOUNT OFF;
+
+END
+</code-block>
+
+## Insert Trigger for Invoice Line
+
+When adding a new line to an invoice, increment that invoice's line count
+
+<code-block lang="sql">
+CREATE OR ALTER TRIGGER S23916715.InsertTriggerForInvoiceLine_ProfG_FP
+    ON S23916715.InvoiceLine_ProfG_FP
+    AFTER INSERT
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- When we insert a new invoice line, update the invoice's line count
+
+    DECLARE @insertedRows INT = @@ROWCOUNT;
+
+    IF @insertedRows > 0
+        BEGIN
+            UPDATE S23916715.Invoice_ProfG_FP
+            SET lines = lines + 1
+            FROM S23916715.Invoice_ProfG_FP
+                     INNER JOIN inserted ON S23916715.Invoice_ProfG_FP.id = inserted.invoice
+            WHERE S23916715.Invoice_ProfG_FP.id = inserted.id;
+        END
+
+    SET NOCOUNT OFF;
+
+END;
+
+</code-block>
+
+## Delete Payment Account
+
+When the payment account is deleted, instead mark it as deleted
+
+<code-block lang="sql">
+CREATE OR ALTER TRIGGER S23916715.OverrideDeletePaymentAccount_Trigger_ProfG_FP
+    ON S23916715.PaymentAccount_ProfG_FP
+    INSTEAD OF DELETE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE S23916715.PaymentAccount_ProfG_FP
+    SET deleted = 1
+    FROM S23916715.PaymentAccount_ProfG_FP
+             INNER JOIN deleted ON S23916715.PaymentAccount_ProfG_FP.id = deleted.id;
+
+    SET NOCOUNT OFF;
+END;
+</code-block>
+
+## Insert Invoice Line
+
+When inserting an invoice line, update its invoice's line count
+
+<code-block lang="sql">
+CREATE OR ALTER TRIGGER S23916715.InsertTriggerForInvoiceLine_ProfG_FP
+    ON S23916715.InvoiceLine_ProfG_FP
+    AFTER INSERT
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- When we insert a new invoice line, update the invoice's line count
+
+    DECLARE @insertedRows INT = @@ROWCOUNT;
+
+    IF @insertedRows > 0
+        BEGIN
+            UPDATE S23916715.Invoice_ProfG_FP
+            SET lines = lines + 1
+            FROM S23916715.Invoice_ProfG_FP
+                     INNER JOIN inserted ON S23916715.Invoice_ProfG_FP.id = inserted.invoice
+            WHERE S23916715.Invoice_ProfG_FP.id = inserted.id;
+        END
+
+    SET NOCOUNT OFF;
+END;
+</code-block>
+
+## Update Invoice Payment Record
+
+When updating an invoice payment record, we need to make sure that the balance on the associated payment account
+matches.
+To solve this, after updating a payment record, we subtract the original value from the account and then add the new
+value
+
+<code-block lang="sql">
+CREATE OR ALTER TRIGGER S23916715.UpdateTriggerForInvoicePaymentRecord_ProfG_FP
+    ON S23916715.InvoicePaymentRecord_ProfG_FP
+    AFTER UPDATE
+    AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- We don't need to use a transactions because triggers are already run in the context of a transaction
+    -- When we update a invoice payment record, we need to correct our total balance in our payment account
+    BEGIN TRY
+        -- Subtract the old amount
+        UPDATE S23916715.PaymentAccount_ProfG_FP
+        SET balance = balance - (SELECT amount FROM deleted)
+        WHERE id = (SELECT payment_account FROM deleted);
+
+        -- Add the new amount
+        UPDATE S23916715.PaymentAccount_ProfG_FP
+        SET balance = balance + (SELECT amount FROM inserted)
+        WHERE id = (SELECT payment_account FROM inserted);
+
+    END TRY
+    BEGIN CATCH
+        PRINT 'Something went wrong when updating payment account'
+        RETURN
+    END CATCH
 
     SET NOCOUNT OFF;
 END

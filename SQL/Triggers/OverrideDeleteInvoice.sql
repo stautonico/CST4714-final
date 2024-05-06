@@ -1,4 +1,4 @@
-CREATE OR ALTER TRIGGER S23916715.UpdateInvoices_Trigger_ProfG_FP
+CREATE OR ALTER TRIGGER S23916715.OverrideDeleteInvoice_Trigger_ProfG_FP
     ON S23916715.Invoice_ProfG_FP
     INSTEAD OF DELETE
     AS

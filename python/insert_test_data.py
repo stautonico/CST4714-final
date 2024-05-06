@@ -143,6 +143,10 @@ def insert_fake_invoice_line(cursor, invoice_count=200, product_count=50, count=
 
     print("\b" * 1000, end="")
 
+def insert_payment_accounts(cursor):
+    for account in ["Checking", "Savings", "Business"]:
+        cursor.execute(f"INSERT INTO S23916715.PaymentAccount_ProfG_FP (name) VALUES ('{account}')")
+
 
 def insert_invoice_payment_record(cursor, count=250, invoice_count=200):
     for x in range(count):
@@ -162,7 +166,8 @@ def insert_invoice_payment_record(cursor, count=250, invoice_count=200):
             @invoice_num={randint(1, invoice_count)},
             @amount={randint(1, 100000)},
             @method='{rand_method}',
-            @check_num={'NULL' if check_num is None else check_num}
+            @check_num={'NULL' if check_num is None else check_num},
+            @payment_account={randint(1,3)}
             """
 
         cursor.execute(template)
@@ -189,8 +194,14 @@ def main():
     insert_fake_invoice(cursor)
     print("Making fake invoice lines")
     insert_fake_invoice_line(cursor)
-    print("Make fake invoice payment records")
+
+    print("Making fake payment accounts")
+    insert_payment_accounts(cursor)
+
+    print("Making fake invoice payment records")
     insert_invoice_payment_record(cursor)
+
+
 
     print("All done")
 

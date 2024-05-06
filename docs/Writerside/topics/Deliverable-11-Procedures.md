@@ -333,6 +333,11 @@ Log a payment for a given invoice. Automatically updates the invoice's status if
     <td>The number written on the check (only applicable if the <code>method</code> is "check")</td>
     <td>❌</td>
   </tr>
+  <tr>
+    <td><code>payment_account</code></td>
+    <td>The account the payment would be paid out to</td>
+    <td>✓</td>
+  </tr>
 </tbody>
 </table>
 
@@ -341,7 +346,8 @@ CREATE OR ALTER PROCEDURE S23916715.AddPaymentToInvoice_ProfG_FP(
     @invoice_num INT,
     @amount FLOAT,
     @method VARCHAR(20),
-    @check_num VARCHAR(32) = NULL
+    @check_num VARCHAR(32) = NULL,
+    @payment_account INT
 )
 AS
 BEGIN
@@ -375,21 +381,34 @@ BEGIN
             RETURN
         END
 
-    -- Step 4: Start a transaction for creating the payment record
+    -- Step 4: Make sure the payment account id is valid
+    DECLARE @findAccountCount INT;
+
+    SELECT @findAccountCount = COUNT(*)
+    FROM S23916715.PaymentAccount_ProfG_FP
+    WHERE id = @payment_account AND deleted = 0;
+    IF @findAccountCount IS NULL OR @findAccountCount = 0
+        BEGIN
+            PRINT 'Payment account doesn''t exist'
+            RETURN
+        END
+
+    -- Step 5: Start a transaction for creating the payment record
     -- The reason we need to do this is because if the payment record fully pays off the invoice,
     -- we need to modify the invoice object as well, which could cause problems if something goes wrong
     -- mid-way trough
     BEGIN TRANSACTION [Trans]
         BEGIN TRY
-            -- Step 4a: Create the payment record
-            INSERT INTO S23916715.InvoicePaymentRecord_ProfG_FP (invoice, amount, method, check_num)
+            -- Step 5a: Create the payment record
+            INSERT INTO S23916715.InvoicePaymentRecord_ProfG_FP (invoice, amount, method, check_num, payment_account)
             VALUES (@invoice_id, TRY_CAST(@amount * 100 AS INT), @paymentMethodId,
-                    @check_num)
+                    @check_num, @payment_account)
 
             DECLARE @remaining FLOAT;
 
             SET @remaining = S23916715.CalculateRemainingBalance_ProfF_FP(@invoice_num)
 
+            -- Step 5b: If the invoice is completely paid off, set the status to paid and set the `paid` timestamp
             IF @remaining <= 0
                 BEGIN
                     UPDATE S23916715.Invoice_ProfG_FP
@@ -397,6 +416,11 @@ BEGIN
                         paid=SYSDATETIME()
                     WHERE num = @invoice_num;
                 END
+
+            -- Step 5c: Add the payment total to our account
+            UPDATE S23916715.PaymentAccount_ProfG_FP
+            SET balance = balance + TRY_CAST(@amount * 100 AS INT)
+            WHERE id = @payment_account;
 
             COMMIT TRANSACTION [Trans]
         END TRY
@@ -436,6 +460,79 @@ Given several `invoice_nums` (in CSV format), set the `status` on each invoice t
   </tr>
 </tbody>
 </table>
+
+<code-block lang="sql">
+CREATE OR ALTER PROCEDURE S23916715.ChangeStatusOnSeveralInvoices_ProfG_FP(
+    @status VARCHAR(128),
+    @invoice_nums VARCHAR(1024) -- a csv of the invoice numbers
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+    DECLARE @status_id INT;
+
+    -- Get (and validate) our status
+    SET @status_id = S23916715.GetInvoiceStatusId_ProfF_FP(@status);
+
+    IF @status_id IS NULL
+        BEGIN
+            PRINT CONCAT(@status, ' is an invalid status')
+            RETURN
+        END
+
+    -- Split the csv argument into a table for looping
+    CREATE TABLE #tableOfIds
+    (
+        id INT
+    );
+
+    INSERT INTO #tableOfIds (id)
+    SELECT value
+    FROM STRING_SPLIT(@invoice_nums, ',');
+
+    -- Loop through each value in our temporary table and find the invoice, then try to set its status
+    DECLARE @id INT;
+
+    BEGIN TRANSACTION [UpdateTransaction]
+
+        BEGIN TRY
+            WHILE EXISTS (SELECT * FROM #tableOfIds)
+                BEGIN
+                    -- Pick an invoice num from the top of our temp table
+                    SELECT TOP 1 @id = id FROM #tableOfIds;
+                    -- Delete that value so we don't pick it next iteration
+                    DELETE FROM #tableOfIds WHERE id = @id;
+
+                    -- Make sure the invoice exists
+                    DECLARE @invoice_id INT;
+
+                    SELECT @invoice_id = id FROM S23916715.Invoice_ProfG_FP WHERE num = @id;
+
+                    IF @invoice_id IS NULL
+                        BEGIN
+                            PRINT CONCAT('Invoice with num ', @id, ' doesn''t exist')
+                            RETURN
+                        END
+
+                    -- Now that we know it exists, update its status
+                    UPDATE S23916715.Invoice_ProfG_FP SET status=@status_id WHERE num = @id;
+
+                END
+                
+            -- Remove our temporary table
+            DROP TABLE #tableOfIds;
+        END TRY
+        BEGIN CATCH
+            PRINT 'Something went wrong when updating invoice'
+            ROLLBACK TRANSACTION [UpdateTransaction]
+            RETURN
+        END CATCH
+    COMMIT TRANSACTION [UpdateTransaction]
+
+    SET NOCOUNT OFF
+END
+</code-block>
 
 ## Create New Customer
 
@@ -500,6 +597,92 @@ Given several `invoice_nums` (in CSV format), set the `status` on each invoice t
     </tr>
   </tbody>
 </table>
+
+<code-block lang="sql">
+CREATE OR ALTER PROCEDURE S23916715.CreateNewCustomer_ProfG_FP(
+    @email VARCHAR(320),
+    @phone_num VARCHAR(12),
+    @first_name VARCHAR(128),
+    @last_name VARCHAR(128),
+    @address VARCHAR(128),
+    @address_line_two VARCHAR(128) = NULL,
+    @city VARCHAR(128),
+    @state CHAR(2),
+    @zip_code VARCHAR(16),
+    @inserted_id INT OUT
+)
+AS
+BEGIN
+    SET NOCOUNT ON
+
+    -- Step 1: Make sure we don't already have this customer (the email should be unique)
+    DECLARE @findCustomerCount INT;
+
+    SELECT @findCustomerCount = COUNT(*) FROM S23916715.Customer_ProfG_FP WHERE email = @email;
+    IF @findCustomerCount IS NOT NULL AND @findCustomerCount != 0
+        BEGIN
+            PRINT CONCAT('Customer with email ', @email, ' already exists!');
+            RETURN
+        END
+
+    -- Step 2: Check if the given email is valid
+    DECLARE @isValid BIT;
+    SET @isValid = S23916715.ValidateEmail_ProfG_FP(@email);
+
+    IF @isValid = 0
+        BEGIN
+            PRINT 'Please provide a valid email address'
+            RETURN
+        END
+
+    -- Step 3: Make sure all of the provided fields aren't null
+    -- Note: We don't need to check the email since our validate function does it
+    IF @phone_num IS NULL OR
+       @first_name IS NULL OR
+       @last_name IS NULL OR
+       @address IS NULL OR
+       @city IS NULL OR
+       @state IS NULL OR
+       @zip_code IS NULL
+        BEGIN
+            PRINT 'Please provide all required fields'
+            RETURN
+        END
+
+
+    -- At this point we can insert our customer into our database
+    BEGIN TRY
+        INSERT INTO S23916715.Customer_ProfG_FP
+        (email,
+         phone_num,
+         first_name,
+         last_name,
+         address,
+         address_line_two,
+         city, state, zip_code)
+        VALUES (@email,
+                @phone_num,
+                @first_name,
+                @last_name,
+                @address,
+                @address_line_two,
+                @city, @state, @zip_code)
+
+        -- Set our output variable to the ID of the last inserted ID (scoped)
+        SET @inserted_id = SCOPE_IDENTITY();
+
+        PRINT 'Successfully added new customer'
+    END TRY
+    BEGIN CATCH
+        PRINT 'Something went wrong when creating new customer';
+        RETURN
+    END CATCH
+
+
+    SET NOCOUNT OFF
+
+END
+</code-block>
 
 # Create New Product
 

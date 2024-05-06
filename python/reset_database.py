@@ -3,7 +3,7 @@ import os
 import re
 import sys
 
-TABLE_DROP_ORDER = ["Variables", "InvoicePaymentRecord", "InvoiceLine", "Invoice",
+TABLE_DROP_ORDER = ["Variables", "InvoicePaymentRecord", "InvoiceLine", "PaymentAccount", "Invoice",
                     "InvoiceStatus", "PaymentMethod", "Price", "Product", "Customer"]
 
 
