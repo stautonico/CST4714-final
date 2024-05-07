@@ -62,6 +62,16 @@ BEGIN
             RETURN
         END
 
+    -- Find the id for the 'DRAFT' status
+    DECLARE @statusId INT;
+
+    SELECT @statusId = id FROM S23916715.InvoiceStatus_ProfG_FP WHERE status = 'DRAFT';
+    IF @statusId IS NULL
+        BEGIN
+            PRINT 'Something went wrong when creating new invoice (bad status)'
+            RETURN
+        END
+
     -- Step 4: Insert the new invoice
     BEGIN TRY
         IF @due_days IS NOT NULL OR @due_date IS NOT NULL
@@ -74,15 +84,15 @@ BEGIN
                     -- but if we have the due_days, set `due` = today's date + the due_days
                     SET @due = DATEADD(DAY, @due_days, GETDATE())
 
-                INSERT INTO S23916715.Invoice_ProfG_FP (num, customer, description, due)
-                VALUES (@invoice_num, @customerID, @description, @due)
+                INSERT INTO S23916715.Invoice_ProfG_FP (num, customer, description, due, status)
+                VALUES (@invoice_num, @customerID, @description, @due, @statusId)
             END
         ELSE
             -- We we didn't provide either due_days or due_date, don't insert it (it'll default to today + 30 days)
             BEGIN
                 INSERT INTO S23916715.Invoice_ProfG_FP
-                    (num, customer, description)
-                VALUES (@invoice_num, @customerID, @description);
+                    (num, customer, description, status)
+                VALUES (@invoice_num, @customerID, @description, @statusId);
             END
 
         -- Set our output variable to the ID of the last inserted ID (scoped)
