@@ -6,6 +6,7 @@
                  name="Deliverable 4"
                  start-page="starter-topic.md">
 
+    <toc-element topic="IMPORTANT-NOTES.md"/>
     <toc-element topic="Tables.md"/>
     <toc-element topic="starter-topic.md"/>
     <toc-element topic="Deliverable-10-Functions.md"/>
